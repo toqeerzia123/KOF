@@ -1,0 +1,215 @@
+
+
+    <div class="row">
+      <div class="col-sm-12">
+<!-- Hover table card start -->
+<app-card [title]="'All Products'" [classHeader]="true" [blockClass]="'table-border-style'">
+  
+
+  <div class="row">
+    <div class="col-sm-12" >
+      <div class="col-sm-2" style="float: right;padding-bottom: 8px;">
+        <input type="text" class="form-control" [(ngModel)]="Barcode" (ngModelChange)="SearchProduct()"placeholder="Enter Barcode to search" >
+           
+         
+     </div>
+    </div>
+  </div>
+  <div class="table-responsive" style="padding: 2%;">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th (click)="Sort('id')">#<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('productName')">Product Name<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('barcode')">Barcode<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('categorey_Name')">Categorey<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('brand_Name')">Brand<i class="fa fa-sort"></i></th>
+   
+        <th (click)="Sort('Image')">Image<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('status')">Status<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('description')">Actions<i class="fa fa-sort"></i></th>
+        <!-- <th>Image</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let products of productlist |orderBy:key :reverse | paginate:{itemsPerPage:10,currentPage:p}; let i=index;" >
+        <td style="width: 2px;">{{i+1}}</td>
+        <td>{{products.productName}}</td>
+        <td>{{products.barcode}}</td>
+        <td>{{products.category_Name}}</td>
+        <td>{{products?.brandNameEng}}</td>
+
+        <!-- <td>{{products.ProductName}}</td> -->
+        <td *ngIf="products.productImage!=noimage;else nImage"><img [src]="ImagebaseUrl+products.productImage" style="height: 40px;"/></td>
+        <ng-template #nImage>
+          <td >No Image</td>
+        </ng-template>
+        <td *ngIf="products.status;else falsee "><img style="height: 20px;" src="assets/icon/check.png"/></td>
+        <ng-template #falsee>
+          <td><img style="height: 20px;" src="assets/icon/cancel.png"/></td>
+        </ng-template>
+        <td>
+          <div class="row">
+           
+            <div style="padding: 4px;">
+              <i class="fa fa-edit" style="font-size:18px;color:rgb(0, 195, 255)"(click)="openLgEdit(Editproduct,products.productId)"></i>
+            </div>
+            <div style="padding: 4px;">
+          <i class="fa fa-upload" aria-hidden="true"  (click)="openLg(uploadfilecontent,products.productId)"></i> 
+          </div>
+          <div *ngIf="products.status;else deact "><img src="assets/images/on.png" title="Active Product" (click)="changestatus(products.productId)"  > </div>
+          <ng-template #deact>
+           <img src="assets/images/off.png" title="DeActive Product"(click)="changestatus(products.productId)" >
+          </ng-template>
+        </div>
+       
+        </td>
+      </tr>
+     
+      </tbody>
+    
+    </table>
+    <div class="row">
+      <div style="right: 10%;">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+  </div>
+  </div>
+</app-card>
+<!-- Hover table card end -->
+      </div>
+    </div>
+  
+    <ng-template #uploadfilecontent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Upload file</h4>
+      
+      </div>
+      <div class="modal-body">
+    
+        <div class="container">
+          <form [formGroup]="form" (ngSubmit)="SubmitImage()">
+      
+              <!-- Progress Bar -->
+              <div class="progress form-group" *ngIf="progress > 0">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                  </div>
+              </div>
+      
+              <div class="form-group">
+                  <input type="file" (change)="uploadFile($event)" required>
+              </div>
+      
+            
+      
+              <div class="form-group">
+                  <button class="btn btn-danger btn-block btn-lg" [disabled]="form.get('avatar')==null">Upload</button>
+              </div>
+          </form>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <ng-template #Editproduct let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Update  Product</h4>
+      
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" novalidate [formGroup]="singleproductform">
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom01"> Product Name</label>
+              <input type="text" class="form-control" id="validationCustom01" placeholder="Product Name" formControlName="productName"  required>
+              
+            </div>
+            <div class="col-md-6 mb-3">
+              <label  for="validationCustom05">Product Name Urdu</label>
+              <input type="text" class="form-control" id="validationCustom05" formControlName="productName_Urdu"  placeholder="productName_Urdu" required>
+              
+            </div>
+            <!-- <div class="col-md-5 mb-3">
+              <label for="validationCustomUsername">Categorey</label>
+              <select class="custom-select" formControlName="category_Id" >
+                <option selected value="{{singleproduct.category_Id}}">{{singleproduct?.category_Name}}</option>
+                <option *ngFor="let option of categoreylist" [value]="option.category_Id">
+                  {{option.category_Name}}
+                </option>
+    
+              </select>
+    
+            </div> -->
+            <!-- <div class="col-md-5 mb-3">
+              <label for="validationCustomUsername">Brand</label>
+              <select class="custom-select" formControlName="brandId" >
+                <option selected value="{{singleproduct.brandId}}">{{singleproduct?.brandNameEng}}</option>
+                <option *ngFor="let option of AllBrands" [value]="option.brandId">
+                  {{option.brandNameEng}}
+                </option>
+    
+              </select>
+    
+            </div> -->
+           
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom04">Barcode</label>
+              <input type="text" class="form-control" id="validationCustom04"formControlName="barcode"  placeholder="Address" required>
+             
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="validationCustom04">Description Urdu</label>
+              <input type="text" class="form-control" id="validationCustom04"formControlName="description_Urdu"  placeholder="description_Urdu" required>
+             
+            </div>
+            
+          </div>
+          <div class="form-row">
+          
+            <div class="col-md-8 mb-3">
+              <label  for="validationCustom05">Description</label>
+              <input type="text" class="form-control" id="validationCustom05" formControlName="description"  placeholder="Description" required>
+              
+            </div>
+            
+          </div>
+          
+         
+           
+        
+    
+          <button style="float: right;" class="btn btn-primary"(click)="UpdateProuct()" type="submit">Submit</button>
+        </form>
+    
+        <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+        </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+      <p style="color: white">Please Wait. </p>  
+      </ngx-spinner>   
