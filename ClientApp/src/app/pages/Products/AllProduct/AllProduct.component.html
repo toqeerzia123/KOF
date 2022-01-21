@@ -9,6 +9,11 @@
   <div class="row">
     <div class="col-sm-12" >
       <div class="col-sm-2" style="float: right;padding-bottom: 8px;">
+ 
+        <button class="btn btn-outline-primary mb-2 mr-2" style="float: right;" (click)="openLg(Editproduct)">Add Product </button>
+         
+     </div>
+      <div class="col-sm-2" style="float: right;padding-bottom: 8px;">
         <input type="text" class="form-control" [(ngModel)]="Barcode" (ngModelChange)="SearchProduct()"placeholder="Enter Barcode to search" >
            
          
@@ -20,12 +25,10 @@
       <thead>
       <tr>
         <th (click)="Sort('id')">#<i class="fa fa-sort"></i></th>
-        <th (click)="Sort('productName')">Product Name<i class="fa fa-sort"></i></th>
-        <th (click)="Sort('barcode')">Barcode<i class="fa fa-sort"></i></th>
-        <th (click)="Sort('categorey_Name')">Categorey<i class="fa fa-sort"></i></th>
-        <th (click)="Sort('brand_Name')">Brand<i class="fa fa-sort"></i></th>
-   
-        <th (click)="Sort('Image')">Image<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('productName')">Category Name<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('name')">Product Name<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('about')">About<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('description')">Description<i class="fa fa-sort"></i></th>
         <th (click)="Sort('status')">Status<i class="fa fa-sort"></i></th>
         <th (click)="Sort('description')">Actions<i class="fa fa-sort"></i></th>
         <!-- <th>Image</th> -->
@@ -34,10 +37,10 @@
       <tbody>
       <tr *ngFor="let products of productlist |orderBy:key :reverse | paginate:{itemsPerPage:10,currentPage:p}; let i=index;" >
         <td style="width: 2px;">{{i+1}}</td>
-        <td>{{products.productName}}</td>
-        <td>{{products.barcode}}</td>
-        <td>{{products.category_Name}}</td>
-        <td>{{products?.brandNameEng}}</td>
+        <td>{{products.name}}</td>
+        <td>{{products.name}}</td>
+        <td>{{products.about}}</td>
+        <td>{{products?.description}}</td>
 
         <!-- <td>{{products.ProductName}}</td> -->
         <td *ngIf="products.productImage!=noimage;else nImage"><img [src]="ImagebaseUrl+products.productImage" style="height: 40px;"/></td>
@@ -55,7 +58,7 @@
               <i class="fa fa-edit" style="font-size:18px;color:rgb(0, 195, 255)"(click)="openLgEdit(Editproduct,products.productId)"></i>
             </div>
             <div style="padding: 4px;">
-          <i class="fa fa-upload" aria-hidden="true"  (click)="openLg(uploadfilecontent,products.productId)"></i> 
+          <i class="fa fa-upload" aria-hidden="true"  (click)="Addimage(uploadfilecontent,products.productId)"></i> 
           </div>
           <div *ngIf="products.status;else deact "><img src="assets/images/on.png" title="Active Product" (click)="changestatus(products.productId)"  > </div>
           <ng-template #deact>
@@ -79,39 +82,7 @@
 <!-- Hover table card end -->
       </div>
     </div>
-  
-    <ng-template #uploadfilecontent let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Upload file</h4>
-      
-      </div>
-      <div class="modal-body">
-    
-        <div class="container">
-          <form [formGroup]="form" (ngSubmit)="SubmitImage()">
-      
-              <!-- Progress Bar -->
-              <div class="progress form-group" *ngIf="progress > 0">
-                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
-                  </div>
-              </div>
-      
-              <div class="form-group">
-                  <input type="file" (change)="uploadFile($event)" required>
-              </div>
-      
-            
-      
-              <div class="form-group">
-                  <button class="btn btn-danger btn-block btn-lg" [disabled]="form.get('avatar')==null">Upload</button>
-              </div>
-          </form>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-      </div>
-    </ng-template>
+
     <ng-template #Editproduct let-modal>
       <div class="modal-header">
         <h4 class="modal-title">Update  Product</h4>
@@ -120,16 +91,22 @@
       <div class="modal-body">
         <form class="needs-validation" novalidate [formGroup]="singleproductform">
           <div class="form-row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-2 mb-3">
+              <label for="validationCustom01">Select Category</label>
+              <select class="custom-select" formControlName="categoryId" >
+                <option *ngFor="let option of categoreylist" [ngValue]="option.id">
+                  {{option.name}}
+                </option>
+    
+              </select>
+            
+            </div>
+            <div class="col-md-4 mb-3">
               <label for="validationCustom01"> Product Name</label>
-              <input type="text" class="form-control" id="validationCustom01" placeholder="Product Name" formControlName="productName"  required>
+              <input type="text" class="form-control" id="validationCustom01" placeholder="name" formControlName="name"  required>
               
             </div>
-            <div class="col-md-6 mb-3">
-              <label  for="validationCustom05">Product Name Urdu</label>
-              <input type="text" class="form-control" id="validationCustom05" formControlName="productName_Urdu"  placeholder="productName_Urdu" required>
-              
-            </div>
+          
             <!-- <div class="col-md-5 mb-3">
               <label for="validationCustomUsername">Categorey</label>
               <select class="custom-select" formControlName="category_Id" >
@@ -155,33 +132,35 @@
            
           </div>
           <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="validationCustom04">Barcode</label>
-              <input type="text" class="form-control" id="validationCustom04"formControlName="barcode"  placeholder="Address" required>
-             
+            <div class="col-md-8 mb-3">
+              <label  for="validationCustom05">About</label>
+              <textarea class="form-control" id="validationCustom05" formControlName="about"  placeholder="About" required></textarea>
+              <!-- <input type="text" class="form-control" id="validationCustom05" formControlName="about"  placeholder="About" required> -->
+              
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="validationCustom04">Description Urdu</label>
-              <input type="text" class="form-control" id="validationCustom04"formControlName="description_Urdu"  placeholder="description_Urdu" required>
-             
-            </div>
+  
             
           </div>
           <div class="form-row">
-          
-            <div class="col-md-8 mb-3">
-              <label  for="validationCustom05">Description</label>
-              <input type="text" class="form-control" id="validationCustom05" formControlName="description"  placeholder="Description" required>
-              
+            <div class="col-md-10 mb-3">
+              <label for="validationCustom04">Description</label>
+              <textarea class="form-control" id="validationCustom04"formControlName="description"  placeholder="Address" required></textarea>
+              <!-- <input type="text" class="form-control" id="validationCustom04"formControlName="description"  placeholder="Address" required>
+              -->
             </div>
-            
+  
+            <div class="col-md-10 mb-3">
+              <label for="validationCustom04">IsActive </label>
+              <input type="checkbox" formControlName="isActive" class="form-control"  />
+            </div>
           </div>
+      
           
          
            
         
     
-          <button style="float: right;" class="btn btn-primary"(click)="UpdateProuct()" type="submit">Submit</button>
+          <button style="float: right;" class="btn btn-primary"(click)="Saveproduct()" type="submit">Submit</button>
         </form>
     
         <script>
@@ -206,6 +185,34 @@
         </script>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+
+    <ng-template #uploadfilecontent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Upload file</h4>
+      
+      </div>
+      <div class="modal-body">
+    
+        <div class="container">
+          <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+            <ngx-dropzone-label>
+              <div>
+                <h2>My custom dropzone</h2>
+              </div>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+           
+        <button type="button" class="btn btn-success" (click)="SubmitImage()">Submit</button>
+     
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
       </div>
     </ng-template>

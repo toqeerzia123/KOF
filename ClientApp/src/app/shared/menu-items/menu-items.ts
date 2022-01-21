@@ -121,20 +121,20 @@ const MENUITEMS = [
      
     ]
   }, 
-  {
-    label: 'Brands',
-    main: [
+  // {
+  //   label: 'Brands',
+  //   main: [
       
-      {
-        state: 'allBrands',
-        short_label: 'B',
-        name: 'All Brands',
-        type: 'link',
-        icon: 'ti-map-alt'
-      },
+  //     {
+  //       state: 'allBrands',
+  //       short_label: 'B',
+  //       name: 'All Brands',
+  //       type: 'link',
+  //       icon: 'ti-map-alt'
+  //     },
      
-    ]
-  },
+  //   ]
+  // },
   {
     label: 'Categories',
     main: [
@@ -149,34 +149,34 @@ const MENUITEMS = [
      
     ]
   },
-  {
-    label: 'Sales Man',
-    main: [
+  // {
+  //   label: 'Sales Man',
+  //   main: [
       
-      {
-        state: 'addsalesman',
-        short_label: 'B',
-        name: 'Sales Man',
-        type: 'link',
-        icon: 'ti-map-alt'
-      },
+  //     {
+  //       state: 'addsalesman',
+  //       short_label: 'B',
+  //       name: 'Sales Man',
+  //       type: 'link',
+  //       icon: 'ti-map-alt'
+  //     },
      
-    ]
-  },
-  {
-    label: 'Banners',
-    main: [
+  //   ]
+  // },
+  // {
+  //   label: 'Banners',
+  //   main: [
       
-      {
-        state: 'banner',
-        short_label: 'C',
-        name: 'Banner',
-        type: 'link',
-        icon: 'ti-map-alt'
-      },
+  //     {
+  //       state: 'banner',
+  //       short_label: 'C',
+  //       name: 'Banner',
+  //       type: 'link',
+  //       icon: 'ti-map-alt'
+  //     },
      
-    ]
-  },
+  //   ]
+  // },
 
   
  

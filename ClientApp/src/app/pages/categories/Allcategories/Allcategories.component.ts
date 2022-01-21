@@ -16,7 +16,7 @@ import { AlertifyService } from "../../../../../src/app/_service/alertify.servic
 })
 export class AllcategoriesComponent implements OnInit {
   form: FormGroup;
-  ImagebaseUrl = environment.Imagebaseurl + "CategoryImages/";
+  ImagebaseUrl = environment.Imagebaseurl + "Images/CategoryImages/";
   CategoriesList: any;
   key: string = "rowid";
   reverse: boolean = false;

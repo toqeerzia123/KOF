@@ -34,15 +34,13 @@ export class AddProductComponent implements OnInit {
   CategoryDto:{};
   newpackage(){
     return this.fb.group({
-      ProductId:new FormControl(this.productmodel.productId),
-      ProductName:new FormControl(this.productmodel.productName),
-      Barcode:new FormControl(this.productmodel.barcode),
-      Brand_Name:new FormControl(this.productmodel.brand_Name),
-      Description:new FormControl(this.productmodel.description),
-      Product_Qty:new FormControl(this.productmodel.product_Qty),
+      productId:new FormControl(this.productmodel.productId),
+      name:new FormControl(this.productmodel.name),
+      categoryId:new FormControl(this.productmodel.categoryId),
+      about:new FormControl(this.productmodel.about),
+      description:new FormControl(this.productmodel.description),
      // Product_TotalPrice:new FormControl(this.productmodel.product_TotalPrice),
-      Unit_Price:new FormControl(this.productmodel.unit_Price),
-      ProductInventory_SellingPrice:new FormControl(this.productmodel.sellingprice),
+     isActive:new FormControl(this.productmodel.isActive),
   
     });
   }
@@ -232,25 +230,25 @@ this.singlecategorey=this.categoreylist.find(x=>x.category_Id==id)
   }
   onBarcodechange(Barcode,id){
     
-    var productdetails=this.categoreyproducts.find(x=>x.barcode==Barcode);
+    var productdetails=this.categoreyproducts.find(x=>x.name==Barcode);
 
 if(productdetails!=null&&productdetails!=undefined){
 
   this.selectedbarcodeproduct=productdetails;
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('ProductId').patchValue(this.selectedbarcodeproduct.productId);
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('ProductName').patchValue(this.selectedbarcodeproduct.productName);
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Brand_Name').patchValue(this.selectedbarcodeproduct.brand_Name);
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Product_Qty').patchValue(this.selectedbarcodeproduct.product_Qty);
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Description').patchValue(this.selectedbarcodeproduct.description);
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Unit_Price').patchValue(this.selectedbarcodeproduct.unit_Price);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('productId').patchValue(this.selectedbarcodeproduct.productId);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('name').patchValue(this.selectedbarcodeproduct.name);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('about').patchValue(this.selectedbarcodeproduct.about);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('description').patchValue(this.selectedbarcodeproduct.description);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('categoryId').patchValue(this.selectedbarcodeproduct.categoryId);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('isActive').patchValue(this.selectedbarcodeproduct.isActive);
 }
 else{
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('ProductId').patchValue(0);
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('ProductName').patchValue("");
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Brand_Name').patchValue("");
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Product_Qty').patchValue("");
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Description').patchValue("");
-  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('Unit_Price').patchValue("");
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('productId').patchValue(0);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('name').patchValue("");
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('about').patchValue("");
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('description').patchValue("");
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('categoryId').patchValue(0);
+  ((this.productinfos.get('products') as FormArray).at(id) as FormGroup).get('isActive').patchValue(0);
 }
 
 

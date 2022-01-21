@@ -28,10 +28,14 @@ GetInventory(){
   return this.http.get<any>(this.baseUrl+'AllInventory')
 };
 GetAllProducts(){
-  return this.http.get<any>(this.baseUrl+'AllProducts')
+  return this.http.get<any>(environment.apiurl+'Product/getproducts')
 };
 UpdateProduct(form: any){
-  return this.http.post<any>(this.baseUrl+'UpdateProduct', form)
+  return this.http.post<any>(environment.apiurl+'UpdateProduct', form)
+};
+Postproduct(form: any){
+  debugger;
+  return this.http.post<any>(environment.apiurl+'Product/Postproducts', form)
 };
 UpdateCategory(form: any){
   return this.http.put<any>(this.baseUrl+'UpdateCategory', form)

@@ -27,7 +27,7 @@ namespace KOF.Controllers
         {
             try
             {
-                var data = await _productService.GetAllAsync();
+                var data = await _productService.GetProducts();
                 return Ok(data);
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace KOF.Controllers
             }
         }
         [HttpPost("Postproducts")]
-        public async Task<IActionResult> Post([FromForm] ProductDto dto)
+        public async Task<IActionResult> Post([FromBody] ProductDto dto)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace KOF.Controllers
             }
         }
         [HttpPut("UpdateProductImage")]
-        public async Task<IActionResult> updateImage([FromForm] ProductDto dto)
+        public async Task<IActionResult> updateImage([FromForm] Productimagedto dto)
         {
             try
             {

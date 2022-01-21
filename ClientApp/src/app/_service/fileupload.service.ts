@@ -8,7 +8,7 @@ import { environment } from '../../../src/environments/environment.prod';
   providedIn: 'root'
 })
 export class FileuploadService {
-  baseUrl = environment.apiurl + 'ProductApi/';
+  baseUrl = environment.apiurl + 'Product/';
   baseurl2= environment.apiurl + 'AddDataWithExcelApi/';
   baseurl3= environment.apiurl + 'DashboardApi/';
 constructor(private http: HttpClient) { }
@@ -38,13 +38,13 @@ uploadbannerimage(profileImage: File,apipath:string): Observable<any> {
     catchError(this.errorMgmt)
   )
 }
-uploadproductimage(profileImage: File,apipath:string,id:number): Observable<any> {
+uploadproductimage(profileImage: File [],apipath:string,id:number): Observable<any> {
   var formData: any = new FormData();
+debugger;
+  formData.append("image", profileImage);
+  formData.append("ProductId",0);
 
-  formData.append("ProductImage", profileImage);
-  formData.append("productId",id);
-
-  return this.http.post(this.baseUrl+apipath, formData, {
+  return this.http.put(this.baseUrl+apipath, formData, {
     reportProgress: true,
     observe: 'events'
   }).pipe(

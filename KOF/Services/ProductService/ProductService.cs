@@ -48,7 +48,7 @@ namespace KOF.Services.ProductService
         {
             try
             {
-                var data = await this.DataContext.Set<Product>().Include(x => x.ProductImages).ToListAsync();
+                var data = await this.DataContext.Set<Product>().Include(x=>x.Category).Include(x => x.ProductImages).ToListAsync();
                 return data;
             }
             catch (Exception ex)

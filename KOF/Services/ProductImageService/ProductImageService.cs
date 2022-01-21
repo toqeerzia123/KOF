@@ -20,16 +20,16 @@ namespace KOF.Services.ProductImageService
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<string> UpdateProductImages(ProductDto dto)
+        public async Task<string> UpdateProductImages(Productimagedto dto)
         {
             try
             {
                 List<ProductImage> images = new List<ProductImage>();
-                foreach (var item in dto.Images)
+                foreach (var item in dto.image)
                 {
                     ProductImage img = new ProductImage
                     {
-                        ProductId = (int)dto.Id,
+                        ProductId = (int)dto.ProductId,
                         ImageUrl = UploadedFile(item),
 
                     };
