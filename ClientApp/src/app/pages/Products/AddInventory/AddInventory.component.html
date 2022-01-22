@@ -1,0 +1,77 @@
+
+
+<div class="row">
+<div class="col-md-5"> 
+  <label>Select Supplier</label>
+  <select class="custom-select"  [(ngModel)]="supplierid" >
+    <option *ngFor="let option of supplier" [ngValue]="option.id">
+      {{option.name}}
+    </option>
+  
+  </select>
+</div>
+</div>
+<div class="row">
+ <div class="col-md-12">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quntity</th>
+        <th>Unit </th>
+        <th>Cost Per Unit</th>
+        <th>Total Cost</th>
+        <th>Price Per Unit</th>
+        <th>Total Price</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <th>
+          <select  class="form-control" [(ngModel)]="productid"class="custom-select"  >
+            <option *ngFor="let option of productlist" [ngValue]="option.product.id" >
+              {{option.product.name}}
+            </option>
+          
+          </select>
+        </th>
+        <th><input class="form-control" type="number" [(ngModel)]="quantity" placeholder="qty"></th>
+        <th><input class="form-control" type="text" [(ngModel)]="unit" placeholder="Units"></th>
+        <th><input class="form-control" type="number"[(ngModel)]="costPerUnit" placeholder="Per unit Price"></th>
+        <th>{{costPerUnit*quantity}}</th>
+        <th><input class="form-control" type="number"[(ngModel)]="pricePerUnit" placeholder="Per Unit Price"></th>
+        <th> {{pricePerUnit*quantity}}</th>
+        <th ><button class="btn btn-success btn-sm" (click)="Add()">Add</button> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of Addtocart">
+        <td>{{item.productname}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.unit}}</td>
+        <td>{{item.costPerUnit}}</td>
+        <td>{{item.totalCost}}</td>
+        <td>{{item.pricePerUnit}}</td>
+        <td>{{item.totalPrice}}</td>
+        <td><button class="btn btn-danger btn-sm"(click)="remove(item.productid)">Remove</button> </td>
+      </tr>
+  <tr>
+    <hr>
+  </tr>
+  
+     <tr>
+      <th>TOTAL</th>
+      <th style="color: green;">{{TotalQty}}</th>
+      <th> </th>
+      <th></th>
+      <th style="color: green;">{{TotalcostPrice}}</th>
+      <th></th>
+      <th style="color: green;">{{TotalSalePrice}}</th>
+      <th><button class="btn btn-success" (click)="SaveInventory()" >Save </button></th>
+      <tr>
+
+      </tr>
+     
+    </tbody>
+  </table>
+ </div>
+</div>

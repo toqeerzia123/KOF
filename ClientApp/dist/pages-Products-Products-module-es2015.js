@@ -48953,7 +48953,7 @@ let AllInventoryComponent = class AllInventoryComponent {
         }
     }
     onOptionsSelected(num) {
-        debugger;
+        
         if (num == "0") {
             this.Searchinvertorylist = this.invertorylist;
         }
@@ -49139,11 +49139,11 @@ let AllProductComponent = class AllProductComponent {
         });
     }
     getproducts() {
-        debugger;
+        
         this.SpinnerService.show();
         this.productservice.GetAllProducts().subscribe((next) => {
             this.productlist = [];
-            debugger;
+            
             this.productlist = next;
             this.Searchableproductlist = next;
             this.SpinnerService.hide();
@@ -49218,9 +49218,9 @@ let AllProductComponent = class AllProductComponent {
         });
     }
     Saveproduct() {
-        debugger;
+        
         this.productservice.Postproduct(this.singleproductform.value).subscribe(next => {
-            debugger;
+            
             this.modalService.dismissAll();
             this.singleproductform.reset();
             this.getproducts();
@@ -49228,14 +49228,14 @@ let AllProductComponent = class AllProductComponent {
         }, error => {
             this.modalService.dismissAll();
             this.singleproductform.reset();
-            debugger;
+            
             this.alertify.success('Product Updated seccussfully');
             console.log(error);
         });
         console.log(this.singleproductform.value);
     }
     UpdateProuct() {
-        debugger;
+        
         this.productservice.UpdateProduct(this.singleproductform.value).subscribe(next => {
             this.modalService.dismissAll();
             this.singleproductform.reset();

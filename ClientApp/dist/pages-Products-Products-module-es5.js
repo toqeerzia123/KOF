@@ -75577,7 +75577,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function onOptionsSelected(num) {
           var _this324 = this;
 
-          debugger;
+          
 
           if (num == "0") {
             this.Searchinvertorylist = this.invertorylist;
@@ -75892,11 +75892,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function getproducts() {
           var _this328 = this;
 
-          debugger;
+          
           this.SpinnerService.show();
           this.productservice.GetAllProducts().subscribe(function (next) {
             _this328.productlist = [];
-            debugger;
+            
             _this328.productlist = next;
             _this328.Searchableproductlist = next;
 
@@ -76002,9 +76002,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function Saveproduct() {
           var _this332 = this;
 
-          debugger;
+          
           this.productservice.Postproduct(this.singleproductform.value).subscribe(function (next) {
-            debugger;
+            
 
             _this332.modalService.dismissAll();
 
@@ -76018,7 +76018,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
             _this332.singleproductform.reset();
 
-            debugger;
+            
 
             _this332.alertify.success('Product Updated seccussfully');
 
@@ -76031,7 +76031,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function UpdateProuct() {
           var _this333 = this;
 
-          debugger;
+          
           this.productservice.UpdateProduct(this.singleproductform.value).subscribe(function (next) {
             _this333.modalService.dismissAll();
 

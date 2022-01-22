@@ -45,6 +45,12 @@ const routes: Routes = [
       //   canActivate: [AuthGuard]
       // }, 
       {
+        path: 'supplier',
+        loadChildren: () => import('./pages/supplier/supplier.module').then(m => m.SupplierModule),
+       // canActivate: [AuthGuard]
+        
+       },
+      {
         path: 'user',
         loadChildren: () => import('./pages/user/profile/profile.module').then(m => m.ProfileModule),
        // canActivate: [AuthGuard]
@@ -97,6 +103,12 @@ const routes: Routes = [
     
       {
         path: 'inventory', redirectTo: 'products/inventory', pathMatch: 'full'
+     
+     
+      },
+       
+      {
+        path: 'addinventory', redirectTo: 'products/addinventory', pathMatch: 'full'
      
      
       }

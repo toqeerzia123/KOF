@@ -41,13 +41,13 @@ const MENUITEMS = [
         type: 'link',
         icon: 'ti-home'
       },  
-      {
-        state: 'pos',
-        short_label: 'P',
-        name: 'POS',
-        type: 'link',
-        icon: 'ti-home'
-      },       
+      // {
+      //   state: 'pos',
+      //   short_label: 'P',
+      //   name: 'POS',
+      //   type: 'link',
+      //   icon: 'ti-home'
+      // },       
     ],
   },
   {
@@ -61,29 +61,29 @@ const MENUITEMS = [
         type: 'link',
         icon: 'ti-map-alt'
       },
-      {
-        state:'posorders',
-        short_label: '0',
-        name: 'Pos Orders',
-        type: 'link',
-        icon: 'ti-map-alt'
-      },
+      // {
+      //   state:'posorders',
+      //   short_label: '0',
+      //   name: 'Pos Orders',
+      //   type: 'link',
+      //   icon: 'ti-map-alt'
+      // },
      
     ]
   },
-  {
-    label: 'Customers',
-    main: [
-      {
-        state: 'allvendors',
-        short_label: 'V',
-        name: 'All Customers',
-        type: 'link',
-        icon: 'ti-map-alt'
-      }
+  // {
+  //   label: 'Customers',
+  //   main: [
+  //     {
+  //       state: 'allvendors',
+  //       short_label: 'V',
+  //       name: 'All Customers',
+  //       type: 'link',
+  //       icon: 'ti-map-alt'
+  //     }
      
-    ]
-  },
+  //   ]
+  // },
   {
     label: 'Inventory Management',
     main: [
@@ -92,6 +92,13 @@ const MENUITEMS = [
         state: 'inventory',
         short_label: 'V',
         name: 'All Inventory',
+        type: 'link',
+        icon: 'ti-map-alt'
+      },
+      {
+        state: 'addinventory',
+        short_label: 'V',
+        name: 'Add Inventory',
         type: 'link',
         icon: 'ti-map-alt'
       },
@@ -111,13 +118,13 @@ const MENUITEMS = [
         type: 'link',
         icon: 'ti-map-alt'
       },
-      {
-        state: 'products',
-        short_label: 'P',
-        name: ' Add Products',
-        type: 'link',
-        icon: 'ti-map-alt'
-      }
+      // {
+      //   state: 'products',
+      //   short_label: 'P',
+      //   name: ' Add Products',
+      //   type: 'link',
+      //   icon: 'ti-map-alt'
+      // }
      
     ]
   }, 
@@ -143,6 +150,20 @@ const MENUITEMS = [
         state: 'allCategories',
         short_label: 'B',
         name: 'All Categories',
+        type: 'link',
+        icon: 'ti-map-alt'
+      },
+     
+    ]
+  },
+  {
+    label: 'Suppliers',
+    main: [
+      
+      {
+        state: 'supplier',
+        short_label: 'B',
+        name: 'All Suppliers',
         type: 'link',
         icon: 'ti-map-alt'
       },

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Us6ZBy570/Wph923Pgjsv3bmEFVk9MAuQ1wllZ08TT+OUocOD7w9ZC9FO1EXLo2+5pgXh7/bGoZYrHqQgrOQGQ==",
+  "dgSpecHash": "zgrEpsRxLoH9oHZzMK0BBzT9mMKagRs4pPwMMzcuAdIANNviqp4QFUNMhGQwF17J7V6PB8nqYDTtYHdRHHIcdg==",
   "success": true,
   "projectFilePath": "D:\\KOF\\KOF\\KOF\\KOF.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
-    "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.data.sqlclient\\1.1.3\\microsoft.data.sqlclient.1.1.3.nupkg.sha512",
     "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.22\\microsoft.entityframeworkcore.3.1.22.nupkg.sha512",
     "C:\\Users\\toqeer.yousaf\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.22\\microsoft.entityframeworkcore.abstractions.3.1.22.nupkg.sha512",

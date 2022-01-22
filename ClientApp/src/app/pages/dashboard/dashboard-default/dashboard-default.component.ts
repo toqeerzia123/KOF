@@ -42,7 +42,7 @@ export class DashboardDefaultComponent implements OnInit {
   ngOnInit() {
     this.dashboard();
     this.GetInventory();
-    debugger;
+    
     let currentDate=new Date();
     this.Datefilterform.setValue({
       FromDate:currentDate,
@@ -324,7 +324,7 @@ export class DashboardDefaultComponent implements OnInit {
    });
  
    filterdate(){
-     debugger;
+     
     // this.SpinnerService.show();
   
     console.log(this.Datefilterform.value)

@@ -26,12 +26,12 @@ export class AllInventoryComponent implements OnInit {
     this.reverse=!this.reverse;
   }
   GetInventory(){
-    this.SpinnerService.show();
+
     this.service.GetstockIn().subscribe((next:any) => {
       this.invertorylist=[];
-      this.invertorylist=next.resp;
-      this.Searchinvertorylist=next.resp;
-      this.SpinnerService.hide();
+      
+      this.invertorylist=next;
+      this.Searchinvertorylist=next;     
       console.log(this.invertorylist)
     }, error => {
       console.log(error);
@@ -53,7 +53,7 @@ export class AllInventoryComponent implements OnInit {
     }
   }
   onOptionsSelected(num){
-    debugger;
+    
     if(num=="0"){
       this.Searchinvertorylist=this.invertorylist;
     }

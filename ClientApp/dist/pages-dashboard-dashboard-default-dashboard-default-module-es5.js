@@ -37019,7 +37019,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           this.dashboard();
           this.GetInventory();
-          debugger;
+          
           var currentDate = new Date();
           this.Datefilterform.setValue({
             FromDate: currentDate,
@@ -37279,7 +37279,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function filterdate() {
           var _this2 = this;
 
-          debugger; // this.SpinnerService.show();
+           // this.SpinnerService.show();
 
           console.log(this.Datefilterform.value);
           this.dashboardservice.Datefilter(this.Datefilterform.value).subscribe(function (next) {

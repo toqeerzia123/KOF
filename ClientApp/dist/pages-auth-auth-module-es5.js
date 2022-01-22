@@ -373,7 +373,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this = this;
 
           // tslint:disable-next-line: no-debugger
-          debugger;
+          
           this.authService.login(this.loginForm.value).subscribe(function (next) {
             _this.alertify.success('logged in successfully');
 

@@ -1199,7 +1199,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loggedIn",
         value: function loggedIn() {
-          debugger;
+          
           var token = localStorage.getItem('token');
 
           if (token != null) {
@@ -2634,7 +2634,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function onBarcodechange(barcode) {
           var _this5 = this;
 
-          debugger;
+          
           var pro = this.productlis.filter(function (x) {
             return x.barcode == barcode;
           });
@@ -2649,7 +2649,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               this.cart[i].TotalPrice = this.cart[i].singleQuantityprice * this.cart[i].Quantity;
               this.inputName.nativeElement.value = '';
               this.grossamount = 0;
-              debugger;
+              
               this.TotalQty = 0;
 
               for (i = 0; i < this.cart.length; i++) {
@@ -2712,7 +2712,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function saveorder() {
           var _this6 = this;
 
-          debugger;
+          
           this.walkinbilling.Discounted_Amount = 0;
           this.walkinbilling.Delivery_Charges = 0;
           this.walkinbilling.GrandTotal = this.grossamount;
@@ -2762,7 +2762,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var _this8 = this;
 
           if (i != -1) {
-            debugger;
+            
             this.grossamount = this.grossamount - this.cart[i].TotalPrice;
             this.TotalQty = 0;
 

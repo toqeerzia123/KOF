@@ -164,13 +164,13 @@ let AllOrdersComponent = class AllOrdersComponent {
         this.GetOrders();
     }
     openOrderDetailLg(content, id) {
-        debugger;
+        
         var data = this.OrdersList.find(res => res.orderId == id);
         this.orderitemns = data.items;
         this.modalService.open(content, { size: 'lg' });
     }
     openOrderUpdateLg(content, id) {
-        debugger;
+        
         this.statusorderid = id;
         var dd = this.SearchOrdersList.filter(x => x.orderId == id);
         this.ordercurrentstatus = dd[0].status;
@@ -189,7 +189,7 @@ let AllOrdersComponent = class AllOrdersComponent {
         });
     }
     onOptionsSelected(num) {
-        debugger;
+        
         if (num == "0") {
             this.SearchOrdersList = this.OrdersList;
         }
@@ -520,18 +520,18 @@ let PosOrderComponent = class PosOrderComponent {
         this.GetOrders();
     }
     openOrderDetailLg(content, id) {
-        debugger;
+        
         var data = this.OrdersList.find(res => res.orderId == id);
         this.orderitemns = data.items;
         this.modalService.open(content, { size: 'lg' });
     }
     openOrderUpdateLg(content, id) {
-        debugger;
+        
         this.statusorderid = id;
         this.modalService.open(content, { size: 'lg' });
     }
     SearchRider() {
-        debugger;
+        
         if (this.ordercode == "") {
             this.SearchOrdersList = this.OrdersList;
         }

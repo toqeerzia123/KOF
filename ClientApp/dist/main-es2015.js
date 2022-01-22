@@ -613,7 +613,7 @@ let AuthService = class AuthService {
         }));
     }
     loggedIn() {
-        debugger;
+        
         const token = localStorage.getItem('token');
         if (token != null) {
             return !this.jwtHelper.isTokenExpired(token);
@@ -1546,7 +1546,7 @@ let MainPosComponent = class MainPosComponent {
         this.router.navigate(['/authentication/login']);
     }
     onBarcodechange(barcode) {
-        debugger;
+        
         var pro = this.productlis.filter(x => x.barcode == barcode);
         if (pro.length > 0) {
             var i = this.cart.findIndex(x => x.barcode == barcode);
@@ -1555,7 +1555,7 @@ let MainPosComponent = class MainPosComponent {
                 this.cart[i].TotalPrice = this.cart[i].singleQuantityprice * this.cart[i].Quantity;
                 this.inputName.nativeElement.value = '';
                 this.grossamount = 0;
-                debugger;
+                
                 this.TotalQty = 0;
                 for (i = 0; i < this.cart.length; i++) {
                     this.grossamount += this.cart[i].TotalPrice;
@@ -1607,7 +1607,7 @@ let MainPosComponent = class MainPosComponent {
         }
     }
     saveorder() {
-        debugger;
+        
         this.walkinbilling.Discounted_Amount = 0;
         this.walkinbilling.Delivery_Charges = 0;
         this.walkinbilling.GrandTotal = this.grossamount;
@@ -1643,7 +1643,7 @@ let MainPosComponent = class MainPosComponent {
     }
     Remove(i) {
         if (i != -1) {
-            debugger;
+            
             this.grossamount = this.grossamount - this.cart[i].TotalPrice;
             this.TotalQty = 0;
             for (i = 0; i < this.cart.length; i++) {

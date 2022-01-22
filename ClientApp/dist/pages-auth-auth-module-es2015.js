@@ -212,7 +212,7 @@ let BasicLoginComponent = class BasicLoginComponent {
     }
     login() {
         // tslint:disable-next-line: no-debugger
-        debugger;
+        
         this.authService.login(this.loginForm.value).subscribe(next => {
             this.alertify.success('logged in successfully');
             this.router.navigate(['/dashboard']);

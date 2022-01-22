@@ -231,7 +231,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function AddCategory() {
           var _this = this;
 
-          debugger;
+          
           var data = this.CategoryForm.value;
           var formData = new FormData();
           formData.append("Name", data.name);
@@ -256,7 +256,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function UpdateCategory() {
           var _this2 = this;
 
-          debugger;
+          
           var data = this.CategoryForm.value;
           var formData = new FormData();
           formData.append("Id", data.id);
@@ -288,7 +288,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.SpinnerService.show();
           this.productservice.GetCategorey().subscribe(function (response) {
-            debugger;
+            
             _this3.CategoriesList = [];
             _this3.CategoriesList = response;
             console.log(_this3.CategoriesList);
@@ -314,12 +314,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "UpdateView",
         value: function UpdateView(content, id) {
-          debugger;
+          
           this.modalContent = "Update";
           var data = this.CategoriesList.find(function (res) {
             return res.id == id;
           });
-          debugger;
+          
           this.Singlecategory = data;
           this.CategoryForm.patchValue({
             id: this.Singlecategory.id,
@@ -342,7 +342,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "uploadFile",
         value: function uploadFile(event) {
-          debugger;
+          
           var file = event.target.files[0];
           this.CategoryForm.get("image").patchValue(file);
           this.CategoryForm.get("image").updateValueAndValidity();
@@ -352,7 +352,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function SubmitImage() {
           var _this4 = this;
 
-          debugger;
+          
 
           if (this.form.value.avatar != null) {
             var apipath = "UploadImageCategory";
@@ -390,7 +390,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "submit",
         value: function submit() {
-          debugger;
+          
           var id = this.CategoryForm.get("id").value;
 
           if (id == null || id == "") {

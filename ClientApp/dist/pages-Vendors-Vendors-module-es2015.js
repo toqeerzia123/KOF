@@ -262,7 +262,7 @@ let VendorDetailComponent = class VendorDetailComponent {
         this.SpinnerService.show();
         this.vendorservice.Vendordetail(Id).subscribe((next) => {
             this.vendorInfo = next.resp;
-            debugger;
+            
             this.SpinnerService.hide();
         }, error => {
             console.log(error);
@@ -271,7 +271,7 @@ let VendorDetailComponent = class VendorDetailComponent {
     VendorOrders(Id) {
         this.vendorservice.VendorOrders(Id).subscribe((next) => {
             this.VendorOrder = next.resp;
-            debugger;
+            
         }, error => {
             console.log(error);
         });
@@ -279,14 +279,14 @@ let VendorDetailComponent = class VendorDetailComponent {
     Vendorladger(Id) {
         this.vendorservice.Vendorladger(Id).subscribe((next) => {
             this.vendorLadger = next.res;
-            debugger;
+            
             console.log(this.vendorLadger);
         }, error => {
             console.log(error);
         });
     }
     openLg(Showdetail, id) {
-        debugger;
+        
         this.data = this.VendorOrder.find(x => x.orderId == id);
         this.Orderitems = this.data.items;
         console.log(this.Orderitems);

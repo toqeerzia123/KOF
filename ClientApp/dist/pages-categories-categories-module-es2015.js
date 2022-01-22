@@ -125,7 +125,7 @@ let AllcategoriesComponent = class AllcategoriesComponent {
         this.showform = true;
     }
     AddCategory() {
-        debugger;
+        
         let data = this.CategoryForm.value;
         var formData = new FormData();
         formData.append("Name", data.name);
@@ -142,7 +142,7 @@ let AllcategoriesComponent = class AllcategoriesComponent {
         console.log(this.CategoryForm.value);
     }
     UpdateCategory() {
-        debugger;
+        
         let data = this.CategoryForm.value;
         var formData = new FormData();
         formData.append("Id", data.id);
@@ -164,7 +164,7 @@ let AllcategoriesComponent = class AllcategoriesComponent {
     Getcategorey() {
         this.SpinnerService.show();
         this.productservice.GetCategorey().subscribe((response) => {
-            debugger;
+            
             this.CategoriesList = [];
             this.CategoriesList = response;
             console.log(this.CategoriesList);
@@ -182,10 +182,10 @@ let AllcategoriesComponent = class AllcategoriesComponent {
         this.modalService.open(content, { size: "lg" });
     }
     UpdateView(content, id) {
-        debugger;
+        
         this.modalContent = "Update";
         var data = this.CategoriesList.find((res) => res.id == id);
-        debugger;
+        
         this.Singlecategory = data;
         this.CategoryForm.patchValue({
             id: this.Singlecategory.id,
@@ -200,13 +200,13 @@ let AllcategoriesComponent = class AllcategoriesComponent {
         this.modalService.open(content, { size: "lg" });
     }
     uploadFile(event) {
-        debugger;
+        
         const file = event.target.files[0];
         this.CategoryForm.get("image").patchValue(file);
         this.CategoryForm.get("image").updateValueAndValidity();
     }
     SubmitImage() {
-        debugger;
+        
         if (this.form.value.avatar != null) {
             var apipath = "UploadImageCategory";
             this.uploadfileservice
@@ -236,7 +236,7 @@ let AllcategoriesComponent = class AllcategoriesComponent {
         }
     }
     submit() {
-        debugger;
+        
         let id = this.CategoryForm.get("id").value;
         if (id == null || id == "") {
             this.AddCategory();

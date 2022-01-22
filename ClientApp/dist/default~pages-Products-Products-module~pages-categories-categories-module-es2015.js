@@ -225,7 +225,7 @@ let FileuploadService = class FileuploadService {
         }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.errorMgmt));
     }
     uploadbannerimage(profileImage, apipath) {
-        debugger;
+        
         var formData = new FormData();
         formData.append("image", profileImage);
         ;
@@ -244,7 +244,7 @@ let FileuploadService = class FileuploadService {
         }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.errorMgmt));
     }
     uploadbrandimage(profileImage, apipath, id) {
-        debugger;
+        
         var formData = new FormData();
         formData.append("Image", profileImage);
         formData.append("Id", id);
@@ -254,7 +254,7 @@ let FileuploadService = class FileuploadService {
         }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.errorMgmt));
     }
     uploadcategoryimage(profileImage, apipath, id) {
-        debugger;
+        
         var formData = new FormData();
         formData.append("Image", profileImage);
         formData.append("Id", id);
@@ -328,7 +328,7 @@ let ProductService = class ProductService {
     }
     ;
     Addcateogry(form) {
-        debugger;
+        
         return this.http.post(this.baseUrl + 'postcategory', form);
     }
     ;
@@ -349,7 +349,7 @@ let ProductService = class ProductService {
     }
     ;
     Postproduct(form) {
-        debugger;
+        
         return this.http.post(_src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__["environment"].apiurl + 'Product/Postproducts', form);
     }
     ;
@@ -366,7 +366,7 @@ let ProductService = class ProductService {
     }
     ;
     upload(formData) {
-        debugger;
+        
         return this.http.post(this.baseUrl + "AddproductExcel", formData, {
             reportProgress: true,
             observe: 'events'

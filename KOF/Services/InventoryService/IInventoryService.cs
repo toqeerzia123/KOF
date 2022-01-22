@@ -9,5 +9,6 @@ namespace KOF.Services.InventoryService
 {
     public interface IInventoryService : IGenericRepository<Inventory>
     {
+        Task<object> GetInventory();
     }
 }

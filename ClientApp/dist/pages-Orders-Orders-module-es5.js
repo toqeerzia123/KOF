@@ -279,7 +279,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "openOrderDetailLg",
         value: function openOrderDetailLg(content, id) {
-          debugger;
+          
           var data = this.OrdersList.find(function (res) {
             return res.orderId == id;
           });
@@ -291,7 +291,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "openOrderUpdateLg",
         value: function openOrderUpdateLg(content, id) {
-          debugger;
+          
           this.statusorderid = id;
           var dd = this.SearchOrdersList.filter(function (x) {
             return x.orderId == id;
@@ -326,7 +326,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function onOptionsSelected(num) {
           var _this2 = this;
 
-          debugger;
+          
 
           if (num == "0") {
             this.SearchOrdersList = this.OrdersList;
@@ -882,7 +882,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "openOrderDetailLg",
         value: function openOrderDetailLg(content, id) {
-          debugger;
+          
           var data = this.OrdersList.find(function (res) {
             return res.orderId == id;
           });
@@ -894,7 +894,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "openOrderUpdateLg",
         value: function openOrderUpdateLg(content, id) {
-          debugger;
+          
           this.statusorderid = id;
           this.modalService.open(content, {
             size: 'lg'
@@ -905,7 +905,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function SearchRider() {
           var _this5 = this;
 
-          debugger;
+          
 
           if (this.ordercode == "") {
             this.SearchOrdersList = this.OrdersList;

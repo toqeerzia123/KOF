@@ -3,7 +3,6 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChang
 
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SupplierService } from './../../../_service/supplier.service';
 //import { Supplier } from 'src/app/Models/Supplier.model';
  import { Supplier } from './../../../Models/Supplier.model';
 import { Product } from './../../../Models/Product.Model';
@@ -46,7 +45,7 @@ export class AddProductComponent implements OnInit {
   }
 
 
-  constructor(private modalService: NgbModal,private model:Supplier,private http:HttpClient,private supplierservice:SupplierService,private productmodel:Product, private fb:FormBuilder,private productservice:ProductService, public fileUploadService: FileuploadService,private alertify: AlertifyService)
+  constructor(private modalService: NgbModal,private model:Supplier,private http:HttpClient,private productmodel:Product, private fb:FormBuilder,private productservice:ProductService, public fileUploadService: FileuploadService,private alertify: AlertifyService)
    {
     this.productinfos=this.fb.group({ 
       products:this.fb.array([this.newpackage()])
@@ -62,17 +61,9 @@ export class AddProductComponent implements OnInit {
     
       avatar: [null]
     })
-    this.GetSuppliers()
+   
   }
- supplier:FormGroup=new FormGroup({
-  supplier_Name: new FormControl(this.model.supplier_Name),
-  supplier_CompanyName: new FormControl(this.model.supplier_CompanyName),
-  supplier_ContactNo: new FormControl(this.model.supplier_ContactNo),
-  supplier_Address: new FormControl(this.model.supplier_Address),
-  supplier_CityName: new FormControl(this.model.supplier_CityName),
-  supplier_Email: new FormControl(this.model.supplier_Email),
-
- });
+ s
  categorey:FormGroup=new FormGroup({
  
   category_Name: new FormControl('')
@@ -82,9 +73,7 @@ export class AddProductComponent implements OnInit {
 
 
 
- supplierinfo:FormGroup=new FormGroup({
-   supplier_Id:new FormControl(this.model.supplier_Id)
- });
+ 
  categoreyinfo:FormGroup=new FormGroup({
   categorey_Id:new FormControl('')
 });
@@ -143,21 +132,7 @@ addNewRow() {
       console.log(error);
     });
   }
-  savesupplier(){
-    
-    
-    this.supplierservice.postsupplier(this.supplier.value).subscribe(next => {
-      console.log(next);
-      this.GetSuppliers();
-      this.supplier.reset();
-     
-      this.modalService.dismissAll();
 
-      
-    }, error => {
-      console.log(error);
-    });
-  }
   removeQuantity(i:number) {
     if(this.formArr.length == 1){
       return false
@@ -167,17 +142,7 @@ addNewRow() {
     //this.hidden = true;
     }
   }
-  GetSuppliers(){
-    
-    this.supplierservice.Getsupplier().subscribe((next:any) => {
-      this.supplierlist=[];
-    
-      this.supplierlist=next;
-      console.log(this.supplierlist);
-    }, error => {
-      console.log(error);
-    });
-  }
+
   Getcategorey(){
     
     this.productservice.GetCategorey().subscribe((next:any) => {
@@ -207,7 +172,6 @@ addNewRow() {
   onOptionsSelected(id){
 console.log(id);
 
-this.selectedsupplier=this.supplierlist.find(x=> x.supplier_Id == id);
 this.showcategoreysection=true;
 this.Getcategorey();
 console.log(this.selectedsupplier);

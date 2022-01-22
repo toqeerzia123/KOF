@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AllOrdersComponent implements OnInit {
   OrdersList:OrderDto[];
+  OrdersList2:OrderDto[];
   SearchOrdersList:OrderDto[];
   key:string='rowid';
   reverse:boolean=false;
@@ -39,15 +40,15 @@ export class AllOrdersComponent implements OnInit {
  
   
   }
-  openOrderDetailLg(content,id:number) {
-    debugger;
-    var data=this.OrdersList.find(res=>res.orderId==id);
-    this.orderitemns=data.items;
+  openOrderDetailLg(content,data:any) {
     
+
+    this.orderitemns=data;
+    console.log(data)
     this.modalService.open(content, { size: 'lg' });
   }
   openOrderUpdateLg(content,id:number) {
-    debugger;
+    
    this.statusorderid=id;
     var dd=this.SearchOrdersList.filter(x=>x.orderId==id);
     this.ordercurrentstatus=dd[0].status;
@@ -67,7 +68,7 @@ export class AllOrdersComponent implements OnInit {
     
   }
   onOptionsSelected(num){
-    debugger;
+    
     if(num=="0"){
       this.SearchOrdersList=this.OrdersList;
     }
@@ -103,13 +104,15 @@ export class AllOrdersComponent implements OnInit {
      }
   }
   GetOrders(){
-    this.SpinnerService.show();
+    
     this.orderservice.GetOrders().subscribe((next:any) => {
-      this.OrdersList=[];
-      this.OrdersList=next.res;console.log(next.res);
-      this.SearchOrdersList=this.OrdersList;
-      this.SpinnerService.hide();
-      console.log(this.OrdersList)
+      
+      this.OrdersList2=[];
+      this.OrdersList2=next;
+    
+     // this.SearchOrdersList2=this.OrdersList2;
+   
+     
     }, error => {
       console.log(error);
     });

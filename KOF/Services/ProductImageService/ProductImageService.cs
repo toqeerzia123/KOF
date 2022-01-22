@@ -18,7 +18,8 @@ namespace KOF.Services.ProductImageService
         public ProductImageService(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment) : base(context)
         {
             _webHostEnvironment = webHostEnvironment;
-        }
+      
+    }
 
         public async Task<string> UpdateProductImages(Productimagedto dto)
         {
@@ -35,6 +36,7 @@ namespace KOF.Services.ProductImageService
                     };
                     images.Add(img);
                 }
+               
                 await this.DataContext.Set<ProductImage>().AddRangeAsync(images);
                 await this.DataContext.SaveChangesAsync();
                 return "success";
@@ -67,7 +69,8 @@ namespace KOF.Services.ProductImageService
             if (file != null)
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images/ProductImages/");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                //uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                uniqueFileName =file.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {

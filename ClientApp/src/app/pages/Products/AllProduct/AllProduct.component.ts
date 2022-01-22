@@ -17,7 +17,7 @@ import { BrandService } from '../../../../../src/app/_service/brand.service';
   styleUrls: ['./AllProduct.component.scss']
 })
 export class AllProductComponent implements OnInit {
-  ImagebaseUrl = environment.Imagebaseurl + 'ProductImages/';
+  ImagebaseUrl = environment.Imagebaseurl + 'Images/ProductImages/';
   form: FormGroup;
   productuploadform:FormGroup;
    progress: number = 0;
@@ -37,21 +37,24 @@ export class AllProductComponent implements OnInit {
   singleproduct:Product;
   categoreylist:any[];
   files: File[] = [];
+  ActionName:string="Save";
+  productimages:any[]=[];
+  Title:string="Add New Product";
   //displayedColumns: string[] = ['productId','productName','brand_Name','barcode','description'];
   constructor(private alertify: AlertifyService,private SpinnerService: NgxSpinnerService,private productservice:ProductService,private modalService: NgbModal, public fileUploadService: FileuploadService, private fb:FormBuilder,private productmodel:Product,private brandservice:BrandService) { }
  
   singleproductform:FormGroup=new FormGroup({
-    productId: new FormControl(this.productmodel.productId),
+    id: new FormControl(0),
    
-    categoryId: new FormControl(this.productmodel.categoryId),
-    name: new FormControl(this.productmodel.name),
-    about: new FormControl(this.productmodel.about),
+    categoryId: new FormControl(0),
+    name: new FormControl(""),
+    about: new FormControl(""),
     // product_Qty: new FormControl(this.productmodel.product_Qty),
     // product_TotalPrice: new FormControl(this.productmodel.product_TotalPrice),
     // sellingprice: new FormControl(this.productmodel.sellingprice),
     // unit_Price: new FormControl(this.productmodel.unit_Price),
-    description:new FormControl(this.productmodel.description),
-    isActive: new FormControl(this.productmodel.isActive),    // brand_Name:new FormControl(this.productmodel.brandNameEng)
+    description:new FormControl(""),
+    isActive: new FormControl(false),    // brand_Name:new FormControl(this.productmodel.brandNameEng)
    });
   ngOnInit() {
     
@@ -77,30 +80,37 @@ export class AllProductComponent implements OnInit {
 		this.files.splice(this.files.indexOf(event), 1);
 	}
   openLg(content,id:number) {
-    this.productid=id;
+    this.Title="Add New Product";
+    this.ActionName="Add";
+ 
     this.GetBrands();
     this.Getcategorey();
     this.modalService.open(content, { size: 'lg' });
   }
-  Addimage(content,id:number) {
-    this.productid=id;
+  Addimage(content,data:any) {
+    
+    this.productimages=null;
+    this.productid=data.id;
+
+  this.productimages=data.productImages;
 
     this.modalService.open(content, { size: 'lg' });
   }
-  openLgEdit(content,id:number){
-    var data=this.Searchableproductlist.find(res=>res.productId==id);
-  this.singleproduct=data;
-  this.singleproductform.setValue({
-    name:this.singleproduct.name,
+  openLgEdit(content,data:any){
 
-productId:this.singleproduct.productId,
-categoryId:this.singleproduct.categoryId,
- description:this.singleproduct.description,
-about:this.singleproduct.about,
-isActive:this.singleproduct.isActive,
+ this.Title="Update Product";
+ this.ActionName="Update Now";
+  this.singleproductform.setValue({
+    name:data.name,
+
+id:data.id,
+categoryId:data.categoryId,
+ description:data.description,
+about:data.about,
+isActive:data.isActive,
 //  brand_Name:this.singleproduct.brand_Name
   });
-  console.log(this.singleproduct);
+
  
     this.modalService.open(content, { size: 'lg' });
   }
@@ -134,11 +144,11 @@ isActive:this.singleproduct.isActive,
 
   }
   getproducts(){
-    debugger;
+    
     this.SpinnerService.show();
     this.productservice.GetAllProducts().subscribe((next:any) => {
       this.productlist=[];
-    debugger;
+    
       this.productlist=next;
       this.Searchableproductlist=next;
       this.SpinnerService.hide();
@@ -179,17 +189,21 @@ isActive:this.singleproduct.isActive,
  
 //}
 uploadFile(event) {
-  debugger;
+  
   const file = (event.target as HTMLInputElement).files[0];
   this.productuploadform.get("image").patchValue(file);
   this.productuploadform.get("ProductId").patchValue(this.productid);
 }
 SubmitImage() {
   this.SpinnerService.show();
-  debugger;
+  
     this.fileUploadService.uploadproductimage(this.files,"UpdateProductImage",this.productid
     ).subscribe((event: HttpEvent<any>) => {
-      
+      this.files=[];
+      this.modalService.dismissAll();
+     
+      this.getproducts();
+      this.alertify.success("Images Added Successfully");
     })
     this.SpinnerService.hide();
   
@@ -197,47 +211,49 @@ SubmitImage() {
 }
 
 
-changestatus(id:number){
-  this.productservice.ChangeStatus(id).subscribe((next:any)=>{
-    this.productlist.forEach(x=>{if(x.productId==id){x.status=!x.status}});
+changestatus(data:any){
+  this.productservice.productstatus(data).subscribe((next:any)=>{
+    this.getproducts();
+    // this.productlist.forEach(x=>{if(x.productId==id){x.status=!x.status}});
   }, error => {
         console.log(error);
       })
     }
     Saveproduct(){
-      debugger;
-     this.productservice.Postproduct(this.singleproductform.value).subscribe(next => {
-    debugger;
-      this.modalService.dismissAll();
-       this.singleproductform.reset();
-       this.getproducts();
-       this.alertify.success('Product Updated seccussfully');
       
-     }, error => {
-      this.modalService.dismissAll();
-      this.singleproductform.reset();
-      debugger
-      this.alertify.success('Product Updated seccussfully');
-       console.log(error);
-     });
+      if(this.singleproductform.value.id==null||this.singleproductform.value.id==0)
+      {
+        this.productservice.Postproduct(this.singleproductform.value).subscribe(next => {
+          
+            this.modalService.dismissAll();
+             this.singleproductform.reset();
+             this.getproducts();
+             this.alertify.success('Product Created seccussfully');
+            
+           }, error => {
+            this.modalService.dismissAll();
+            this.singleproductform.reset();
+            this.alertify.success('Product Created seccussfully');
+             console.log(error);
+           });
+      }else{
+        if(this.singleproductform)
+        this.productservice.UpdateProduct(this.singleproductform.value).subscribe(next => {
+       
+         this.modalService.dismissAll();
+          this.singleproductform.reset();
+          this.getproducts();
+          this.alertify.success('Product Updated seccussfully');
+         
+        }, error => {
+        
+         this.alertify.warning('Somethink want to ');
+          console.log(error);
+        });
+      }
+ 
       console.log(this.singleproductform.value)
     }
 
-UpdateProuct(){
-  debugger;
- this.productservice.UpdateProduct(this.singleproductform.value).subscribe(next => {
 
-  this.modalService.dismissAll();
-   this.singleproductform.reset();
-   this.getproducts();
-   this.alertify.success('Product Updated seccussfully');
-  
- }, error => {
-  this.modalService.dismissAll();
-  this.singleproductform.reset();
-  this.alertify.success('Product Updated seccussfully');
-   console.log(error);
- });
-  console.log(this.singleproductform.value)
-}
 }

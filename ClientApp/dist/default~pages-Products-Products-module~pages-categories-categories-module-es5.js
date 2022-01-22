@@ -332,7 +332,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "uploadbannerimage",
         value: function uploadbannerimage(profileImage, apipath) {
-          debugger;
+          
           var formData = new FormData();
           formData.append("image", profileImage);
           ;
@@ -355,7 +355,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "uploadbrandimage",
         value: function uploadbrandimage(profileImage, apipath, id) {
-          debugger;
+          
           var formData = new FormData();
           formData.append("Image", profileImage);
           formData.append("Id", id);
@@ -367,7 +367,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "uploadcategoryimage",
         value: function uploadcategoryimage(profileImage, apipath, id) {
-          debugger;
+          
           var formData = new FormData();
           formData.append("Image", profileImage);
           formData.append("Id", id);
@@ -486,7 +486,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "Addcateogry",
         value: function Addcateogry(form) {
-          debugger;
+          
           return this.http.post(this.baseUrl + 'postcategory', form);
         }
       }, {
@@ -512,7 +512,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "Postproduct",
         value: function Postproduct(form) {
-          debugger;
+          
           return this.http.post(_src_environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__["environment"].apiurl + 'Product/Postproducts', form);
         }
       }, {
@@ -535,7 +535,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function upload(formData) {
           var _this = this;
 
-          debugger;
+          
           return this.http.post(this.baseUrl + "AddproductExcel", formData, {
             reportProgress: true,
             observe: 'events'

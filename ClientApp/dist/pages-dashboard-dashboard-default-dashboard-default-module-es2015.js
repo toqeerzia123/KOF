@@ -38363,7 +38363,7 @@ let DashboardDefaultComponent = class DashboardDefaultComponent {
     ngOnInit() {
         this.dashboard();
         this.GetInventory();
-        debugger;
+        
         let currentDate = new Date();
         this.Datefilterform.setValue({
             FromDate: currentDate,
@@ -38635,7 +38635,7 @@ let DashboardDefaultComponent = class DashboardDefaultComponent {
         });
     }
     filterdate() {
-        debugger;
+        
         // this.SpinnerService.show();
         console.log(this.Datefilterform.value);
         this.dashboardservice.Datefilter(this.Datefilterform.value).subscribe(next => {

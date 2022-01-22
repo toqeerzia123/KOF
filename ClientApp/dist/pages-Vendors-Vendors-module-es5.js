@@ -451,7 +451,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.SpinnerService.show();
           this.vendorservice.Vendordetail(Id).subscribe(function (next) {
             _this3.vendorInfo = next.resp;
-            debugger;
+            
 
             _this3.SpinnerService.hide();
           }, function (error) {
@@ -465,7 +465,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.vendorservice.VendorOrders(Id).subscribe(function (next) {
             _this4.VendorOrder = next.resp;
-            debugger;
+            
           }, function (error) {
             console.log(error);
           });
@@ -477,7 +477,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.vendorservice.Vendorladger(Id).subscribe(function (next) {
             _this5.vendorLadger = next.res;
-            debugger;
+            
             console.log(_this5.vendorLadger);
           }, function (error) {
             console.log(error);
@@ -486,7 +486,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "openLg",
         value: function openLg(Showdetail, id) {
-          debugger;
+          
           this.data = this.VendorOrder.find(function (x) {
             return x.orderId == id;
           });

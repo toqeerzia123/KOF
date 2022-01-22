@@ -25,7 +25,7 @@ uploadproductfile(profileImage: File,apipath:string): Observable<any> {
   )
 }
 uploadbannerimage(profileImage: File,apipath:string): Observable<any> {
-  debugger;
+  
   var formData: any = new FormData();
 
   formData.append("image", profileImage);
@@ -40,9 +40,12 @@ uploadbannerimage(profileImage: File,apipath:string): Observable<any> {
 }
 uploadproductimage(profileImage: File [],apipath:string,id:number): Observable<any> {
   var formData: any = new FormData();
-debugger;
-  formData.append("image", profileImage);
-  formData.append("ProductId",0);
+
+profileImage.forEach(element => {
+  formData.append("image", element);
+});
+  
+  formData.append("productId",id);
 
   return this.http.put(this.baseUrl+apipath, formData, {
     reportProgress: true,
@@ -52,7 +55,7 @@ debugger;
   )
 }
 uploadbrandimage(profileImage: File,apipath:string,id:number): Observable<any> {
-  debugger;
+  
   var formData: any = new FormData();
 
   formData.append("Image", profileImage);
@@ -66,7 +69,7 @@ uploadbrandimage(profileImage: File,apipath:string,id:number): Observable<any> {
   )
 }
 uploadcategoryimage(profileImage: File,apipath:string,id:number): Observable<any> {
-  debugger;
+  
   var formData: any = new FormData();
 
   formData.append("Image", profileImage);

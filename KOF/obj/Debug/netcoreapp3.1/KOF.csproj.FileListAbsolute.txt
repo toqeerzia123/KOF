@@ -325,4 +325,5 @@ D:\KOF\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.csproj.CopyComplete
 D:\KOF\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.dll
 D:\KOF\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.pdb
 D:\KOF\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.genruntimeconfig.cache
+D:\KOF\KOF\KOF\bin\Debug\netcoreapp3.1\AutoMapper.dll
 D:\KOF\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.csproj.AssemblyReference.cache

@@ -1,4 +1,5 @@
 ﻿using KOF.DTO_S;
+using KOF.Models;
 using KOF.Services.ProductImageService;
 using KOF.Services.ProductService;
 using Microsoft.AspNetCore.Http;
@@ -59,8 +60,36 @@ namespace KOF.Controllers
         {
             try
             {
-                var data = await _productService.UpdateProduct(product);
-                if (data == "success")
+                var dat = await _productService.GetByIdAsync(product.Id);
+                Product obj = new Product();
+                obj = dat;
+                obj.Name = product.Name;
+                obj.CategoryId = product.CategoryId;
+                obj.About = product.About;
+                obj.Description = product.Description;
+                obj.IsActive = product.IsActive;
+                var data = await _productService.UpdateAsync(obj);
+                if (data !=null)
+                {
+                    return Ok(new { response = data });
+                }
+                return BadRequest(new { response = data });
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("productstatus")]
+        public async Task<IActionResult> productstatus([FromBody] Product product)
+        {
+            try
+            {
+                product.IsActive = !product.IsActive;
+                var data = await _productService.UpdateAsync(product);
+                if (data !=null)
                 {
                     return Ok(new { response = data });
                 }
