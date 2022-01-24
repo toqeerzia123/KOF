@@ -39,6 +39,7 @@
         <th (click)="Sort('storename')">Contact No<i class="fa fa-sort"></i></th>
         <th (click)="Sort('storename')">Email<i class="fa fa-sort"></i></th>
         <th (click)="Sort('createDate')">Order Type<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('createDate')">Order From<i class="fa fa-sort"></i></th>
         <th (click)="Sort('createDate')">Total Amount<i class="fa fa-sort"></i></th>
         <th (click)="Sort('status')">Status<i class="fa fa-sort"></i></th>
       <th (click)="Sort('Action')">Action<i class="fa fa-sort"></i></th>
@@ -58,15 +59,14 @@
         <td>{{obj.order?.totalAmount}}</td>
         <td>{{obj.order?.orderStatus}}</td>
     
-       <td>  <div class="row">
+       <td>  
 
-        <div style="padding: 4px;">
           <i class="fa fa-desktop" aria-hidden="true" style="font-size:18px;color:rgb(255, 0, 0)"  (click)="openOrderDetailLg(OrderDetailcontent,obj)" ></i> 
+       
+        <div style="padding: 4px;"*ngIf="obj.order.orderStatus!='Completed'">
+          <i class="fa fa-edit" aria-hidden="true" style="font-size:18px;color:rgb(113, 147, 240)"  (click)="openOrderUpdateLg(EditStatuscontent,obj.order)" ></i> 
         </div>
-        <!-- <div style="padding: 4px;"*ngIf="obj.status!='Completed'">
-          <i class="fa fa-edit" aria-hidden="true" style="font-size:18px;color:rgb(113, 147, 240)"  (click)="openOrderUpdateLg(EditStatuscontent,obj.orderId)" ></i> 
-        </div> -->
-    </div></td>
+   </td>
       </tr>
      
       </tbody>
@@ -95,6 +95,7 @@
       <thead>
            <tr>
              <th>Product Name</th>
+             <th>Unit</th>
            
              <th>Qty</th>
              <th>Unit Price</th>
@@ -104,9 +105,9 @@
       <tbody *ngFor="let obj of orderitemns.orderitems">
         <tr>
           <th>{{obj?.product}}</th>
-     
+          <th>{{obj?.unit}}</th>
           <th>{{obj?.item.quantity}}</th>
-          <th>{{obj?.item.perUnitCost}}</th>
+          <th>{{obj?.item.perUnitPrice}}</th>
           <th>{{obj?.item.totalPrice}}</th>
         </tr>
       </tbody>

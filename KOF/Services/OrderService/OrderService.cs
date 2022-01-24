@@ -21,6 +21,12 @@ namespace KOF.Services.OrderService
             _context = context;
         }
 
+        public async Task<object> Changestatus(Order dto)
+        {
+            await UpdateAsync(dto);
+            return "success";
+        }
+
         public async Task<object> GetOrders()
         {
             var data = await _context.Orders.Include(x=>x.OrderItems).ThenInclude(x=>x.Product).Select(x=>new { 
@@ -28,7 +34,8 @@ namespace KOF.Services.OrderService
               orderitems=_context.OrderItems.Where(z=>z.OrderId==x.Id).Select(z=> new { 
                 item=z,
                 product=_context.Products.Where(p=>p.Id==z.ProductId).Select(p=>p.Name).SingleOrDefault(),
-               
+                  unit = _context.Inventories.Where(q => q.ProductId == z.ProductId).Select(p => p.Unit).SingleOrDefault(),
+
               }).ToList(),
               userinfo=_context.Users.Where(y=>y.Id==x.UserId).Select(y=> new {
               name=y.Name,

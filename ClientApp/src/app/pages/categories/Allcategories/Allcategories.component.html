@@ -9,7 +9,7 @@
       <span class="code-header">All Categories Detail</span>
 
       <div class="row" *ngIf="!showform">
-        <div class="col-sm-10">
+        <div class="col-sm-11">
           <button
             class="btn btn-success pull-right"
             (click)="createCategory(categoryModal)"
@@ -76,18 +76,17 @@
                     ></i>
                   </div> -->
                   <div style="padding: 4px">
-                    <div *ngIf="obj.status;else deact "><img src="assets/images/on.png" title="Active Supplier" (click)="changestatus(obj)"  > | <i
+                    <div *ngIf="obj.status;else deact ">  <i
                       class="fa fa-edit"
-                      style="font-size: 18px;margin-left: 5px; color: rgb(0, 195, 255)"
+                      style="font-size: 18px;margin-right: 5px; color: rgb(0, 195, 255)"
                       (click)="UpdateView(categoryModal, obj.id)"
-                    ></i> </div>
-                    <ng-template #deact>
-                     <img src="assets/images/off.png" title="DeActive Product"(click)="changestatus(obj)" >|
-                     <i
-                     class="fa fa-edit"
-                     style="font-size: 18px;margin-left: 5px; color: rgb(0, 195, 255)"
-                     (click)="UpdateView(categoryModal, obj.id)"
-                   ></i>
+                    ></i> | <img src="assets/images/on.png" title="Active Supplier" (click)="changestatus(obj)"  >  </div>
+                    <ng-template #deact>    <i
+                      class="fa fa-edit"
+                      style="font-size: 18px;margin-right: 5px; color: rgb(0, 195, 255)"
+                      (click)="UpdateView(categoryModal, obj.id)"
+                    ></i>  | 
+                     <img src="assets/images/off.png" title="DeActive Product"(click)="changestatus(obj)" >                 
                     </ng-template>
                   
                   </div>

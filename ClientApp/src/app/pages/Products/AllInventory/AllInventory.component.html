@@ -60,16 +60,17 @@
           <td>{{products.inventory.totalCost}}</td>
           <td>{{products.inventory.pricePerUnit}}</td>
           <td>{{products.inventory.totalPrice}}</td>
-          <td>{{products.inventory.status}}</td>
         
-        <td *ngIf="products.productInventory_Status;else falsee "><img style="height: 20px;" src="assets/icon/check.png"/></td>
+        <td *ngIf="products.inventory.status;else falsee "><img style="height: 20px;" src="assets/icon/check.png"/></td>
         <ng-template #falsee>
           <td><img style="height: 20px;" src="assets/icon/cancel.png"/></td>
         </ng-template>
 
-          <td *ngIf="products.productInventory_Status;else deact "><button (click)="changestatus(products.productInvertory_Id)" class="btn btn-danger">Deactive</button> </td>
+          <td *ngIf="products.inventory.status;else deact "> <img src="assets/images/on.png" title="Active Supplier" (click)="changestatus(products.inventory)"  >  </td>
           <ng-template #deact>
-            <td><button (click)="changestatus(products.productInvertory_Id)" class="btn btn-success">Active</button></td>
+            <td>   <img src="assets/images/off.png" title="DeActive Product"(click)="changestatus(products.inventory)" > | <i class="fa fa-trash-o" (click)="RemoveInventory(products.inventory)" style="font-size:21px;color:red"></i>
+
+            </td>
           </ng-template>
         </tr>
       </tbody>

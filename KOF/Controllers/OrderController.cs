@@ -1,4 +1,5 @@
-﻿using KOF.Services.OrderService;
+﻿using KOF.Models;
+using KOF.Services.OrderService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,6 +24,20 @@ namespace KOF.Controllers
             try
             {
                 var data = await _OrderService.GetOrders();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("ChangeStatus")]
+        public async Task<IActionResult> ChangeStatus(Order dto)
+        {
+            try
+            {
+                var data = await _OrderService.Changestatus(dto);
                 return Ok(data);
             }
             catch (Exception ex)

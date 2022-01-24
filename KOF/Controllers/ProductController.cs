@@ -37,6 +37,22 @@ namespace KOF.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("deleteproductimage")]
+        public async Task<IActionResult> remove(int Id)
+        {
+            try
+            {
+            
+                var data = await _productImageService.RemoveProductImage(Id);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost("Postproducts")]
         public async Task<IActionResult> Post([FromBody] ProductDto dto)
         {

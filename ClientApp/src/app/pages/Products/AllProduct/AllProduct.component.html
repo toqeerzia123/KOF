@@ -84,8 +84,9 @@
         <h4 class="modal-title">{{Title}}</h4>
       
       </div>
-      <div class="modal-body">
-        <form class="needs-validation" novalidate [formGroup]="singleproductform">
+      <form class="needs-validation container"   novalidate [formGroup]="singleproductform">
+      <div class="modal-body" >
+      
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationCustom01">Select Category</label>
@@ -99,38 +100,17 @@
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationCustom01"> Product Name</label>
-              <input type="text" class="form-control" id="validationCustom01" placeholder="name" formControlName="name"  required>
+              <input type="text" class="form-control" id="validationCustom01" placeholder="Please Enter Product Name" formControlName="name"  required>
               
             </div>
           
-            <!-- <div class="col-md-5 mb-3">
-              <label for="validationCustomUsername">Categorey</label>
-              <select class="custom-select" formControlName="category_Id" >
-                <option selected value="{{singleproduct.category_Id}}">{{singleproduct?.category_Name}}</option>
-                <option *ngFor="let option of categoreylist" [value]="option.category_Id">
-                  {{option.category_Name}}
-                </option>
-    
-              </select>
-    
-            </div> -->
-            <!-- <div class="col-md-5 mb-3">
-              <label for="validationCustomUsername">Brand</label>
-              <select class="custom-select" formControlName="brandId" >
-                <option selected value="{{singleproduct.brandId}}">{{singleproduct?.brandNameEng}}</option>
-                <option *ngFor="let option of AllBrands" [value]="option.brandId">
-                  {{option.brandNameEng}}
-                </option>
-    
-              </select>
-    
-            </div> -->
+
            
           </div>
           <div class="form-row">
             <div class="col-md-8 mb-3">
               <label  for="validationCustom05">About</label>
-              <textarea class="form-control" id="validationCustom05" formControlName="about"  placeholder="About" required></textarea>
+              <textarea class="form-control" id="validationCustom05" formControlName="about"  placeholder="About Product" required></textarea>
               <!-- <input type="text" class="form-control" id="validationCustom05" formControlName="about"  placeholder="About" required> -->
               
             </div>
@@ -140,7 +120,7 @@
           <div class="form-row">
             <div class="col-md-10 mb-3">
               <label for="validationCustom04">Description</label>
-              <textarea class="form-control" id="validationCustom04"formControlName="description"  placeholder="Address" required></textarea>
+              <textarea class="form-control" id="validationCustom04"formControlName="description"  placeholder="Product Description" required></textarea>
               <!-- <input type="text" class="form-control" id="validationCustom04"formControlName="description"  placeholder="Address" required>
               -->
             </div>
@@ -164,8 +144,8 @@
          
            
         
-          <button style="float: right;" class="btn btn-primary"(click)="Saveproduct()" type="submit">{{ActionName}}</button>
-        </form>
+         
+       
     
         <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -189,8 +169,10 @@
         </script>
       </div>
       <div class="modal-footer">
+        <button style="float: right;" class="btn btn-primary"(click)="Saveproduct()" type="submit">{{ActionName}}</button>
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
       </div>
+    </form>
     </ng-template>
 
     <ng-template #uploadfilecontent let-modal>
@@ -213,7 +195,7 @@
           </div>
       </div>
       <br>
-      <button type="button" class="btn btn-success" (click)="SubmitImage()">Submit</button><br>
+      <button type="button" class="btn btn-success" (click)="SubmitImage()" >Submit</button><br>
       <br>
     <br>
 <div *ngFor="let item of productimages">
@@ -223,7 +205,7 @@
         <!-- <img src="/Content/BannerImage/{{item.bannerImagePath}}" > -->
         <img [src]="ImagebaseUrl+item.imageUrl"alt="Avatar" class="image"  style="height: 200px;width: 150px;">
         <div class="middle">
-        <button  (click)="clickFunction(item.bannerId)" class="text">Remove</button>
+        <button  (click)="removeiage(item.id)" class="text">Remove</button>
           
         </div>
       </div>

@@ -13,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AllOrdersComponent implements OnInit {
   OrdersList:OrderDto[];
-  OrdersList2:OrderDto[];
+  OrdersList2:any[];
   SearchOrdersList:OrderDto[];
   key:string='rowid';
   reverse:boolean=false;
@@ -47,46 +47,52 @@ export class AllOrdersComponent implements OnInit {
     console.log(data)
     this.modalService.open(content, { size: 'lg' });
   }
-  openOrderUpdateLg(content,id:number) {
-    
-   this.statusorderid=id;
-    var dd=this.SearchOrdersList.filter(x=>x.orderId==id);
-    this.ordercurrentstatus=dd[0].status;
+  openOrderUpdateLg(content,data:any) {
+   this.statusorderid=data.id;
+ 
+    this.ordercurrentstatus=data.orderStatus;
     this.modalService.open(content, { size: 'lg' });
   }
   onOptionsOrderStatusSelected(){
+((this.orderstatus.get('orderId').patchValue(this.statusorderid)));
+let orderinfo=this.OrdersList2.find(x=>x.order.id==this.statusorderid);
+orderinfo.order.orderStatus =this.orderstatus.value.status;
+this.orderservice.UpdateOrderStatus(orderinfo.order).subscribe(next => {
+  this.GetOrders();
+ }, error => {
+   console.log(error);
+ });
 
-    ((this.orderstatus.get('orderId').patchValue(this.statusorderid)));
-    this.orderservice.UpdateOrderStatus(this.orderstatus.value).subscribe((next:any) => {
-     this.OrdersList.forEach(x=>{if(x.orderId==this.statusorderid){x.status=this.orderstatus.value.status}})
-      this.modalService.dismissAll();
-      this.orderstatus.reset();
+    // ((this.orderstatus.get('orderId').patchValue(this.statusorderid)));
+    // this.orderservice.UpdateOrderStatus(this.orderstatus.value).subscribe((next:any) => {
+    //  this.OrdersList.forEach(x=>{if(x.orderId==this.statusorderid){x.status=this.orderstatus.value.status}})
+    //   this.modalService.dismissAll();
+    //   this.orderstatus.reset();
 
-    }, error => {
-      console.log(error);
-    });
+    // }, error => {
+    //   console.log(error);
+    // });
     
   }
   onOptionsSelected(num){
-    
     if(num=="0"){
       this.SearchOrdersList=this.OrdersList;
     }
     if(num=="1"){
       this.status="Pending";
-      this.SearchOrdersList=this.OrdersList.filter(x=>x.status==this.status);
+      this.OrdersList2=this.OrdersList2.filter(x=>x.order.orderStatus ==this.status);
     }
     if(num=="2"){
       this.status="Active";
-      this.SearchOrdersList=this.OrdersList.filter(x=>x.status==this.status);
+      this.OrdersList2=this.OrdersList2.filter(x=>x.order.orderStatus ==this.status);
     }
     if(num=="3"){
       this.status="Completed";
-      this.SearchOrdersList=this.OrdersList.filter(x=>x.status==this.status);
+      this.OrdersList2=this.OrdersList2.filter(x=>x.order.orderStatus ==this.status);
     }
     if(num=="4"){
       this.status="Cancelled";
-      this.SearchOrdersList=this.OrdersList.filter(x=>x.status==this.status);
+      this.OrdersList2=this.OrdersList2.filter(x=>x.order.orderStatus ==this.status);
     }
 
   }
@@ -103,6 +109,20 @@ export class AllOrdersComponent implements OnInit {
     
      }
   }
+
+  changestatus(data:any){
+ 
+    
+    
+
+    this.orderservice.UpdateOrderStatus(data).subscribe(next => {
+      this.GetOrders();
+     }, error => {
+       console.log(error);
+     });
+  
+
+}
   GetOrders(){
     
     this.orderservice.GetOrders().subscribe((next:any) => {

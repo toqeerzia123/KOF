@@ -68,9 +68,19 @@ export class AllInventoryComponent implements OnInit {
     }
 
   }
-  changestatus(id:number){
-this.service.ChangeStatus(id).subscribe((next:any)=>{
-  this.invertorylist.forEach(x=>{if(x.productInvertory_Id==id){x.productInventory_Status=!x.productInventory_Status}});
+  RemoveInventory(data:number){
+this.service.RemoveInventory(data).subscribe((next:any)=>{
+  this.GetInventory();
+  //  this.invertorylist.forEach(x=>{if(x.data.inventory.id==data.id){x.productInventory_Status=!x.productInventory_Status}});
+}, error => {
+      console.log(error);
+    })
+  }
+  changestatus(data:number){
+this.service.ChangeStatus(data).subscribe((next:any)=>{
+  this.GetInventory();
+  
+  //  this.invertorylist.forEach(x=>{if(x.data.inventory.id==data.id){x.productInventory_Status=!x.productInventory_Status}});
 }, error => {
       console.log(error);
     })

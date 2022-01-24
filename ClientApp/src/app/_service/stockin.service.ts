@@ -11,8 +11,11 @@ constructor(private http: HttpClient) { }
 GetstockIn(){
   return this.http.get<any>(this.baseUrl+'getinventory')
 };
-ChangeStatus(id:any){
-  return this.http.post<any>(this.baseUrl+'Changestatus',id)
+ChangeStatus(data:any){
+  return this.http.post<any>(this.baseUrl+'Changestatus',data)
+};
+RemoveInventory(data:any){
+  return this.http.post<any>(this.baseUrl+'RemoveInventory',data)
 };
 PostInventory(data:any){
   

@@ -30,7 +30,7 @@ export class AllProductComponent implements OnInit {
   reverse:boolean=false;
   disable:boolean=false;
   p:number=1;
-  productid:number
+  productid:number=0;
   EditProduct:any;
   noimage="";
   AllBrands:any[];
@@ -82,7 +82,17 @@ export class AllProductComponent implements OnInit {
   openLg(content,id:number) {
     this.Title="Add New Product";
     this.ActionName="Add";
- 
+    this.singleproductform.setValue({
+      name:"",
+  
+  id:0,
+  categoryId:0,
+   description:"",
+  about:"",
+  isActive:false
+  //  brand_Name:this.singleproduct.brand_Name
+    });
+  
     this.GetBrands();
     this.Getcategorey();
     this.modalService.open(content, { size: 'lg' });
@@ -91,7 +101,6 @@ export class AllProductComponent implements OnInit {
     
     this.productimages=null;
     this.productid=data.id;
-
   this.productimages=data.productImages;
 
     this.modalService.open(content, { size: 'lg' });
@@ -151,6 +160,12 @@ isActive:data.isActive,
     
       this.productlist=next;
       this.Searchableproductlist=next;
+      if(this.productid !=0)
+      {
+        var data=this.productlist.find(x=>x.product.id==this.productid);
+        this.productimages=data.product.productImages;
+      }
+   
       this.SpinnerService.hide();
       console.log(this.productlist);
       // this.listData = new MatTableDataSource(this.productlist);
@@ -194,18 +209,44 @@ uploadFile(event) {
   this.productuploadform.get("image").patchValue(file);
   this.productuploadform.get("ProductId").patchValue(this.productid);
 }
-SubmitImage() {
-  this.SpinnerService.show();
+removeiage(id:number)
+{
+ 
+    this.fileUploadService.removeimage(id).subscribe((next:any) => {
+      // this.listData = new MatTableDataSource(this.productlist);
+      // this.listData.sort=this.sort;
+      // this.listData.paginator=this.paginator;
+
+    }, error => {
+      let dat=this.productimages
+      this.productimages.splice(this.productimages.indexOf(id), 1)
+      let data2=this.productimages;
+      let images=this.productimages.indexOf(x=>x.id==id);
+      this.productimages.slice(images,1)
+      this.alertify.success("Image Remove Successfully");
   
+  }
+)
+  }
+SubmitImage() {
+
+  if(this.files.length>0)
+  {
+    this.SpinnerService.show();
     this.fileUploadService.uploadproductimage(this.files,"UpdateProductImage",this.productid
-    ).subscribe((event: HttpEvent<any>) => {
+    ).subscribe((next:any)  => {
       this.files=[];
-      this.modalService.dismissAll();
-     
+      this.productimages=[];
+      this.productlist=[];
       this.getproducts();
-      this.alertify.success("Images Added Successfully");
+
+
     })
     this.SpinnerService.hide();
+  }else{
+    this.alertify.message("No Image was selected");
+  }
+  
   
   
 }

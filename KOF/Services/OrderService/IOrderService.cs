@@ -10,5 +10,6 @@ namespace KOF.Services.OrderService
     public interface IOrderService : IGenericRepository<Order>
     {
         Task<object> GetOrders();
+        Task<object> Changestatus(Order dto);
     }
 }

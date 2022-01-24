@@ -117,18 +117,18 @@
           <th>
           
             <div >
-              <div *ngIf="item.isActive;else deact "><img src="assets/images/on.png" title="Active Supplier" (click)="changestatus(item)"  >      <i
+              <div *ngIf="item.isActive;else deact ">  <i
                 class="fa fa-edit"
                 style="font-size: 18px;margin-left: 5px; color: rgb(0, 195, 255)"
                 (click)="UpdateView(item.id)"
-              ></i> </div>
-              <ng-template #deact>
+              ></i> | <img src="assets/images/on.png" title="Active Supplier" (click)="changestatus(item)"  >      </div>
+              <ng-template #deact>     <i
+                class="fa fa-edit"
+                style="font-size: 18px;margin-left: 5px; color: rgb(0, 195, 255)"
+                (click)="UpdateView(item.id)"
+              ></i> |
                <img src="assets/images/off.png" title="DeActive Product"(click)="changestatus(item)" >
-               <i
-               class="fa fa-edit"
-               style="font-size: 18px;margin-left: 5px; color: rgb(0, 195, 255)"
-               (click)="UpdateView(item.id)"
-             ></i>
+           
               </ng-template>
          
               

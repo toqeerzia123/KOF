@@ -69,5 +69,45 @@ namespace KOF.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("Changestatus")]
+        public async Task<IActionResult> Changestatus([FromBody] Inventory dto)
+        {
+            try
+            {
+                dto.Status =!dto.Status;
+            
+                    var data = await _inventoryService.UpdateAsync(dto);
+                
+
+
+                return Ok(new { response = "" });
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("RemoveInventory")]
+        public async Task<IActionResult> RemoveInventory([FromBody] Inventory dto)
+        {
+            try
+            {
+             await  _inventoryService.DeleteAsync(dto);
+                return Ok(new { response = "" });
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

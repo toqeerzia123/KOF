@@ -24,6 +24,10 @@ uploadproductfile(profileImage: File,apipath:string): Observable<any> {
     catchError(this.errorMgmt)
   )
 }
+removeimage(id:number){
+var url=this.baseUrl
+  return this.http.delete<any>(this.baseUrl+'deleteproductimage?Id='+id)
+};
 uploadbannerimage(profileImage: File,apipath:string): Observable<any> {
   
   var formData: any = new FormData();

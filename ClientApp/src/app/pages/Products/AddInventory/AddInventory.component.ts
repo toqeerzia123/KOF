@@ -6,6 +6,7 @@ import { StockinService } from '../../../../../src/app/_service/stockin.service'
 import { Supplier } from '../../../../../src/app/Models/Supplier.model';
 import { ProductService } from '../../../../../src/app/_service/product.service';
 import { Router } from '@angular/router';
+import { AlertifyService } from '../../../../../src/app/_service/alertify.service';
 
 @Component({
   selector: 'app-AddInventory',
@@ -17,7 +18,7 @@ export class AddInventoryComponent implements OnInit {
   Addtocart: any []=[];
   productlist:any[];
   productid:number;
-  supplierid:number;
+  supplierid:number=0;
   quantity:number=0;
  unit:string
   costPerUnit:number=0;
@@ -33,6 +34,7 @@ export class AddInventoryComponent implements OnInit {
     private service:StockinService,
     private modalService: NgbModal,
     private router: Router,
+    private alertify: AlertifyService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -53,8 +55,27 @@ export class AddInventoryComponent implements OnInit {
   }
   Add()
   {
-    if(this.supplierid>0 && this.productid>0 &&this.quantity>=1&&this.costPerUnit>=1&&this.pricePerUnit>=1)
+    if(this.supplierid==0)
     {
+    return this.alertify.warning("Supplier is not Selected")
+    }
+    if(this.productid==0)
+    {
+    return this.alertify.warning("Product is not Selected")
+    }
+    if(this.quantity==0)
+    {
+    return this.alertify.warning("Quntity is not Added")
+    }
+    if(this.costPerUnit==0)
+    {
+    return this.alertify.warning("Cost Per Unit Not Added")
+    }
+    if(this.pricePerUnit==0)
+    {
+    return this.alertify.warning("Price Per Unit Not Added")
+    }
+  
     var name=this.productlist.find(x=>x.product.id==this.productid).product.name;
    var obj={
 
@@ -80,12 +101,8 @@ export class AddInventoryComponent implements OnInit {
   this.Addtocart.forEach(a => this.TotalcostPrice += a.totalCost)
   this.productid=0;
   this.quantity=0;
-  this.unit="";
-  this.costPerUnit=0;
-  this.totalCost=0;
-  this.pricePerUnit=0;
-  this.totalPrice=0;
-}
+  return this.alertify.success("Product Added Successfully")
+
   }
   SaveInventory(){
 
@@ -113,8 +130,13 @@ export class AddInventoryComponent implements OnInit {
 
 remove(id:number)
 {
+  let data=this.Addtocart.find(x=>x.productid==id)
  let index=this.Addtocart.indexOf(x=>x.productid==id)
  this.Addtocart.splice(index, 1);
+ this.TotalQty=data.quantity-this.quantity;
+ this.TotalcostPrice=this.TotalcostPrice-data.totalCost;
+ this.TotalSalePrice=this.TotalSalePrice-data.totalPrice;
+ this.alertify.success("Product Removed Successfully")
 }
   getproducts(){
     

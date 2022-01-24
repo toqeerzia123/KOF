@@ -19,7 +19,7 @@ GetPosOrders(){
   return this.http.get<any>(this.baseUrl2+'GetPosOrders',httpOptions)
 };
 UpdateOrderStatus(form:any){
-  return this.http.post<any>(this.baseUrl+'OrderStatus',form)
+  return this.http.put<any>(this.baseUrl+'ChangeStatus',form)
 };
 };
 var headers_object = new HttpHeaders({
