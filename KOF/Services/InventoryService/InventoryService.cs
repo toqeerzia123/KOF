@@ -20,6 +20,34 @@ namespace KOF.Services.InventoryService
             _context = context;
         }
 
+        public async Task<int> addtocart(int inventoryid, int productid, int Qty, int userid,string unit)
+        {
+            var inv = _context.Inventories.Where(x=>x.Id==inventoryid).SingleOrDefault();
+            Cart obj = new Cart
+            {
+                ProductId = productid,
+                UserId = 1,
+                Quantity = Qty,
+                PerUnitPrice = inv.PricePerUnit,
+                TotalPrice = inv.PricePerUnit * Qty
+
+            };
+         await    _context.AddAsync(obj);
+       await     _context.SaveChangesAsync();
+            return 0;
+        }
+
+        public async Task<object> CategorywiseInventory(int id)
+        {
+            var data = await _context.Inventories.Where(a => a.Status == true).Select(a =>new  { 
+                 invinfo=a,
+                 productinfo=a.Product,
+                 categoryinfo=a.Product.Category
+
+            }).ToListAsync();
+            return data;
+        }
+
         public  async Task<object> GetInventory()
         {
             var data = await _context.Inventories.Select(x=> new { 
@@ -35,6 +63,25 @@ namespace KOF.Services.InventoryService
             }).ToListAsync();
 
             return data;
+        }
+
+        public async Task<int> removecart(int id)
+        {
+         
+            try
+            {
+                var data =  _context.Carts.Find(id);
+                _context.Carts.Remove(data);
+                 _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                var dat = ex.Message;
+                throw;
+            }
+     
+            return 0;
+
         }
     }
 }

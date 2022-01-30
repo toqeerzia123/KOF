@@ -1,0 +1,368 @@
+﻿@inject KOF.Context.ApplicationDbContext _context;
+@{
+    ViewData["Title"] = "INdex";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+    int id=ViewBag.id;
+ 
+
+    var categories = _context.Categories.Where(x => x.Status == true).ToList();
+}
+
+<div class="page-heading">
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <nav class="woocommerce-breadcrumb">
+                        <ul>
+                            <li><a href="https://klbtheme.com/qualis">Home</a></li>
+                            <span>&rsaquo; </span>
+                          
+                            @*<li><strong>Shop</strong></li>*@
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-title">
+        <h2>Products</h2>
+    </div>
+</div>
+<section class="main-container col2-left-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-main col-sm-9 col-sm-push-3 product-grid">
+                <div class="pro-coloumn">
+                    <div class="category-description std">
+                        <div class="slider-items-products">
+                            <div id="category-desc-slider" class="product-flexslider hidden-buttons">
+                                <div class="slider-items slider-width-col1 owl-carousel owl-theme">
+                                    <div class="item">
+                                        <a href=""><img alt="Season 2018" src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/category-img1.jpg"></a>
+                                        <div class="cat-img-title cat-bg cat-box">
+                                            <div class="small-tag">Season 2018</div>
+                                            <h2 class="cat-heading">Organic <span>World</span></h2>
+                                            <p>GET 40% OFF ⋅ Free Delivery</p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <a href=""><img alt="Green World" src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/category-img2.jpg"></a>
+                                        <div class="cat-img-title cat-bg cat-box">
+                                            <div class="small-tag">Green World</div>
+                                            <h2 class="cat-heading">Vegetable <span>sale</span></h2>
+                                            <p>Save 70% on all items</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <article>
+                        <div class="woocommerce-notices-wrapper"></div>
+                        <div class="toolbar">
+                            @*<div class="sorter">
+                                <div class="view-mode"> <a title="Grid" class="button button-active button-grid">&nbsp;</a> <a title="List" class="button-list">&nbsp;</a></div>
+                            </div>*@
+                            <div class="sort-by">
+                                <form class="woocommerce-ordering" method="get">
+                                    <select name="orderby" class="orderby" aria-label="Shop order">
+                                        <option value="menu_order" selected='selected'>Default sorting</option>
+                                        <option value="popularity">Sort by popularity</option>
+                                        <option value="rating">Sort by average rating</option>
+                                        <option value="date">Sort by latest</option>
+                                        <option value="price">Sort by price: low to high</option>
+                                        <option value="price-desc">Sort by price: high to low</option>
+                                    </select>
+                                    <input type="hidden" name="paged" value="1" />
+                                </form>
+                            </div>
+                        </div>
+                        <div class="category-products">
+                            <ul class="products-grid">
+                                @{
+                                    if (id == 0)
+                                    {
+                                        var data = _context.Inventories.Where(a => a.Status == true).Select(a => new
+                                        {
+                                            invinfo = a,
+                                            productinfo = a.Product,
+                                            categoryinfo = a.Product.Category
+
+                                        }).ToList();
+                                        foreach (var item in data)
+                                        {
+
+                                            var src = _context.ProductImages.Where(x => x.ProductId == item.productinfo.Id).FirstOrDefault().ImageUrl;
+                                            <li class="item col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                                <div class="item-inner">
+                                                    <div class="item-img">
+                                                        <div class="item-img-info">
+                                                            <a href="@Url.Action("Productdetail","Home",new {id=item.invinfo.Id })" title="Fresh Organic Mustard Leaves" class="product-image"> <img onload="Wpfcll.r(this,true);" src="/Images/ProductImages/@Url.Content(src)" data-wpfc-original-src="/Images/ProductImages/@Url.Content(src)" alt="No Imge"></a>
+                                                            @*<div class="sale-label sale-top-left">-34%</div>*@
+                                                            <div class="item-box-hover">
+                                                                @*<div class="box-inner">
+                                            <div class="product-detail-bnt"><a class="button detail-bnt" ><span>Quick View</span></a></div>
+                                            <div class="actions">
+                                                <span class="add-to-links">
+                                                    <div class="tinv-wraper woocommerce tinv-wishlist tinvwl-shortcode-add-to-cart" >
+                                                        <div class="tinv-wishlist-clear"></div>
+                                                        <a role="button" tabindex="0" aria-label="Add to Wishlist" class="tinvwl_add_to_wishlist_button tinvwl-icon-heart tinvwl-position-shortcode" ><span class="tinvwl_add_to_wishlist-text">Add to Wishlist</span></a>
+                                                        <div class="tinv-wishlist-clear"></div>
+                                                        <div class="tinvwl-tooltip">Add to Wishlist</div>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="add_cart"><a href="@Url.Action("Productdetail","Home",new {id=item.invinfo.Id })" data-quantity="1" class="button btn-cart button product_type_simple add_to_cart_button ajax_add_to_cart" aria-label="Read more about &ldquo;Fresh Organic Mustard Leaves&rdquo;" rel="nofollow"><span>Read more</span></a></div>
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="info-inner">
+                                                            <div class="item-title"><a href="@Url.Action("Productdetail","Home",new {id=item.invinfo.Id })" title="Fresh Organic Mustard Leaves">@item.productinfo.Name</a></div>
+                                                            <div class="item-content">
+                                                                <div class="rating">
+                                                                    <div class="ratings">
+                                                                        @*<div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>*@
+                                                                    </div>
+                                                                </div>
+                                                                <div class="item-price">
+                                                                    <div class="price-box"><span class="regular-price"><span class="price"><del aria-hidden="true"><span class="woocommerce-Price-amount amount"></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs.</span>@item.invinfo.PricePerUnit</bdi></span></ins></span> </span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tinv-wraper woocommerce tinv-wishlist tinvwl-after-add-to-cart tinvwl-loop-button-wrapper">
+                                                    <div class="tinv-wishlist-clear"></div>
+                                                    <a role="button" tabindex="0" aria-label="Add to Wishlist" class="tinvwl_add_to_wishlist_button tinvwl-icon-heart tinvwl-position-after tinvwl-loop"><span class="tinvwl_add_to_wishlist-text">Add to Wishlist</span></a>
+                                                    <div class="tinv-wishlist-clear"></div>
+                                                    <div class="tinvwl-tooltip">Add to Wishlist</div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        var data = _context.Inventories.Where(a => a.Status == true && a.Product.Category.Id == id).Select(a => new
+                                        {
+                                            invinfo = a,
+                                            productinfo = a.Product,
+                                            categoryinfo = a.Product.Category
+
+                                        }).ToList();
+                                        foreach (var item in data)
+                                        {
+
+                                            var src = _context.ProductImages.Where(x => x.ProductId == item.productinfo.Id).FirstOrDefault().ImageUrl;
+                                            <li class="item col-lg-4 col-md-3 col-sm-4 col-xs-12">
+                                                <div class="item-inner">
+                                                    <div class="item-img">
+                                                        <div class="item-img-info">
+                                                            <a href="@Url.Action("Productdetail","Home",new {id=item.invinfo.Id })" title="Fresh Organic Mustard Leaves" class="product-image"> <img onload="Wpfcll.r(this,true);" src="/Images/ProductImages/@Url.Content(src)" data-wpfc-original-src="/Images/ProductImages/@Url.Content(src)" alt="No Imge"></a>
+                                                            @*<div class="sale-label sale-top-left">-34%</div>*@
+                                                            <div class="item-box-hover">
+                                                                @*<div class="box-inner">
+                                            <div class="product-detail-bnt"><a class="button detail-bnt" ><span>Quick View</span></a></div>
+                                            <div class="actions">
+                                                <span class="add-to-links">
+                                                    <div class="tinv-wraper woocommerce tinv-wishlist tinvwl-shortcode-add-to-cart" >
+                                                        <div class="tinv-wishlist-clear"></div>
+                                                        <a role="button" tabindex="0" aria-label="Add to Wishlist" class="tinvwl_add_to_wishlist_button tinvwl-icon-heart tinvwl-position-shortcode" ><span class="tinvwl_add_to_wishlist-text">Add to Wishlist</span></a>
+                                                        <div class="tinv-wishlist-clear"></div>
+                                                        <div class="tinvwl-tooltip">Add to Wishlist</div>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="add_cart"><a href="@Url.Action("Productdetail","Home",new {id=item.invinfo.Id })" data-quantity="1" class="button btn-cart button product_type_simple add_to_cart_button ajax_add_to_cart" aria-label="Read more about &ldquo;Fresh Organic Mustard Leaves&rdquo;" rel="nofollow"><span>Read more</span></a></div>
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="info-inner">
+                                                            <div class="item-title"><a href="@Url.Action("Productdetail","Home",new {id=item.invinfo.Id })" title="Fresh Organic Mustard Leaves">@item.productinfo.Name</a></div>
+                                                            <div class="item-content">
+                                                                <div class="rating">
+                                                                    <div class="ratings">
+                                                                        @*<div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>*@
+                                                                    </div>
+                                                                </div>
+                                                                <div class="item-price">
+                                                                    <div class="price-box"><span class="regular-price"><span class="price"><del aria-hidden="true"><span class="woocommerce-Price-amount amount"></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs.</span>@item.invinfo.PricePerUnit</bdi></span></ins></span> </span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tinv-wraper woocommerce tinv-wishlist tinvwl-after-add-to-cart tinvwl-loop-button-wrapper">
+                                                    <div class="tinv-wishlist-clear"></div>
+                                                    <a role="button" tabindex="0" aria-label="Add to Wishlist" class="tinvwl_add_to_wishlist_button tinvwl-icon-heart tinvwl-position-after tinvwl-loop"><span class="tinvwl_add_to_wishlist-text">Add to Wishlist</span></a>
+                                                    <div class="tinv-wishlist-clear"></div>
+                                                    <div class="tinvwl-tooltip">Add to Wishlist</div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+
+
+
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="toolbar bottom">
+                            <div class="display-product-option">
+                                @*<div class="pages">
+                                    <nav class="woocommerce-pagination">
+                                        <ul class='page-numbers'>
+                                            <li><span aria-current="page" class="page-numbers current">1</span></li>
+                                            <li><a class="page-numbers" href="https://klbtheme.com/qualis/shop/page/2/">2</a></li>
+                                            <li><a class="next page-numbers" href="https://klbtheme.com/qualis/shop/page/2/">&rarr;</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>*@
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <aside class="col-left sidebar shop-sidebar col-sm-3 col-xs-12 col-sm-pull-9">
+                <div class="block woocommerce widget_price_filter">
+                    <div class="block-title">Filter by price</div>
+                    <form method="get" action="https://klbtheme.com/qualis/shop/">
+                        <div class="price_slider_wrapper">
+                            <div class="price_slider" style="display:none;"></div>
+                            <div class="price_slider_amount" data-step="10">
+                                <input type="text" id="min_price" name="min_price" value="0" data-min="0" placeholder="Min price" />
+                                <input type="text" id="max_price" name="max_price" value="60" data-max="60" placeholder="Max price" />
+                                <button type="submit" class="button">Filter</button>
+                                <div class="price_label" style="display:none;"> Price: <span class="from"></span> &mdash; <span class="to"></span></div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="block woocommerce widget_product_categories">
+                    <div class="block-title">Product categories</div>
+                    <ul class="product-categories">
+                        @foreach (var item in categories)
+                        {
+                            <li class="cat-item cat-item-30"><a href="@Url.Action("ProductGridView","Home",new {id=item.Id })">@item.Name</a></li>
+
+                        }
+
+                    </ul>
+                </div>
+                <div class="block widget_product_slider">
+                    <div class="custom-slider">
+                        <div>
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li class="active" data-target="#carousel-example-generic" data-slide-to="0"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/slide2.jpg" alt="slide3">
+                                        <div class="carousel-caption">
+                                            <h4>Fruit Shop</h4>
+                                            <h3><a href="http://klbtheme.com/qualis/product/organic-grape-tomatoes/">Up to 70% Off</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <a class="link" href="http://klbtheme.com/qualis/product/organic-grape-tomatoes/">Buy Now</a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/slide3.jpg" alt="slide3">
+                                        <div class="carousel-caption">
+                                            <h4>Black Grapes</h4>
+                                            <h3><a href="http://klbtheme.com/qualis/product/fresh-red-seedless/">Mega Sale</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <a class="link" href="http://klbtheme.com/qualis/product/fresh-red-seedless/">Buy Now</a>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/slide1.jpg" alt="slide3">
+                                        <div class="carousel-caption">
+                                            <h4>Food Farm</h4>
+                                            <h3><a href="http://klbtheme.com/qualis/product/organic-sweet-corn/">Up to 50% Off</a></h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                            <a class="link" href="http://klbtheme.com/qualis/product/organic-sweet-corn/">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block woocommerce widget_top_rated_products">
+                    <div class="block-title">Top rated products</div>
+                    <ul class="product_list_widget">
+                        <li>
+                            <a href="https://klbtheme.com/qualis/product/fresh-red-seedless/"> <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" width="80" height="80" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-80x80.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="blank" loading="lazy" data-wpfc-original-srcset="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-80x80.jpg 80w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-150x150.jpg 150w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-300x300.jpg 300w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-768x768.jpg 768w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-450x450.jpg 450w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-600x600.jpg 600w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16-99x99.jpg 99w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p16.jpg 800w" data-wpfc-original-sizes="(max-width: 80px) 100vw, 80px" /> <span class="product-title">Fresh Red Seedless</span> </a>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                            <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>50.00</bdi></span> &ndash; <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>60.00</bdi></span>
+                        </li>
+                        <li>
+                            <a href="https://klbtheme.com/qualis/product/fresh-organic-mustard-leaves/"> <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" width="80" height="80" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-80x80.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="blank" loading="lazy" data-wpfc-original-srcset="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-80x80.jpg 80w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-150x150.jpg 150w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-300x300.jpg 300w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-768x768.jpg 768w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-450x450.jpg 450w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-600x600.jpg 600w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12-99x99.jpg 99w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p12.jpg 800w" data-wpfc-original-sizes="(max-width: 80px) 100vw, 80px" /> <span class="product-title">Fresh Organic Mustard Leaves</span> </a>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                            <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>9.00</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>6.00</bdi></span></ins>
+                        </li>
+                        <li>
+                            <a href="https://klbtheme.com/qualis/product/organic-grape-tomatoes/"> <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" width="80" height="80" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-80x80.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="blank" loading="lazy" data-wpfc-original-srcset="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-80x80.jpg 80w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-150x150.jpg 150w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-300x300.jpg 300w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-768x768.jpg 768w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-450x450.jpg 450w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-600x600.jpg 600w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3-99x99.jpg 99w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p3.jpg 800w" data-wpfc-original-sizes="(max-width: 80px) 100vw, 80px" /> <span class="product-title">Organic Grape Tomatoes</span> </a>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                            <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>7.99</bdi></span>
+                        </li>
+                        <li>
+                            <a href="https://klbtheme.com/qualis/product/organic-sweet-banana/"> <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" width="80" height="80" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-80x80.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="blank" loading="lazy" data-wpfc-original-srcset="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-80x80.jpg 80w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-150x150.jpg 150w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-300x300.jpg 300w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-768x768.jpg 768w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-450x450.jpg 450w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-600x600.jpg 600w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-99x99.jpg 99w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6.jpg 800w" data-wpfc-original-sizes="(max-width: 80px) 100vw, 80px" /> <span class="product-title">Organic Sweet Banana</span> </a>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                            <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>18.00</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>15.00</bdi></span></ins>
+                        </li>
+                        <li>
+                            <a href="https://klbtheme.com/qualis/product/washed-sugar-snap-peas/"> <img onload="Wpfcll.r(this,true);" src="https://klbtheme.com/qualis/wp-content/plugins/wp-fastest-cache-premium/pro/images/blank.gif" width="80" height="80" data-wpfc-original-src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-80x80.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="blank" loading="lazy" data-wpfc-original-srcset="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-80x80.jpg 80w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-150x150.jpg 150w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-300x300.jpg 300w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-768x768.jpg 768w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-450x450.jpg 450w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-600x600.jpg 600w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8-99x99.jpg 99w, https://klbtheme.com/qualis/wp-content/uploads/2018/12/p8.jpg 800w" data-wpfc-original-sizes="(max-width: 80px) 100vw, 80px" /> <span class="product-title">Washed Sugar Snap Peas</span> </a>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+                            <del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>5.00</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&pound;</span>4.00</bdi></span></ins>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<div class="loader-image" style="display:none;"></div>
+<div class="ajaxphp-results"></div>
+<div class="container">
+    <div class="row our-features-box">
+        <ul>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-truck"></i>
+                    <div class="content">FREE SHIPPING on order over $99</div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-phone"></i>
+                    <div class="content">HAVE A QUESTIONS? <a href="10800 7890000">+10800 789 0000</a></div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-usd"></i>
+                    <div class="content">100% MONEY BACK GUARANTEE</div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-briefcase"></i>
+                    <div class="content">30 DAYS RETURN SERVICE</div>
+                </div>
+            </li>
+            <li class="last">
+                <div class="feature-box"> <a href="#"><i class="fa fa-apple"></i> Download</a> <a href="#"><i class="fa fa-android"></i> Download</a></div>
+            </li>
+        </ul>
+    </div>
+</div>
