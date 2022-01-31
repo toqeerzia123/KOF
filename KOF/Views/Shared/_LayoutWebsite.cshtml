@@ -17,6 +17,9 @@
     <link rel="alternate" type="application/rss+xml" title="Qualis - Responsive eCommerce Theme &raquo; Feed" href="https://klbtheme.com//WebContent/qualis/feed/" />
     <link rel="alternate" type="application/rss+xml" title="Qualis - Responsive eCommerce Theme &raquo; Comments Feed" href="https://klbtheme.com//WebContent/qualis/comments/feed/" />
     <link rel="stylesheet" type="text/css" href="/WebContent/qualis/wp-content/cache/wpfc-minified/fcxf2d2s/3xnse.css" media="all" />
+    <link rel="alternate" type="application/rss+xml" title="Qualis - Responsive eCommerce Theme &raquo; Comments Feed" href="https://klbtheme.com/qualis/comments/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Qualis - Responsive eCommerce Theme &raquo; Fresh Red Seedless Comments Feed" href="https://klbtheme.com/qualis/product/fresh-red-seedless/feed/" />
+    <link rel='stylesheet' id='wp-block-library-css' href='http://klbtheme.com/qualis/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
     <style id='wp-block-library-theme-inline-css'>
         #start-resizable-editor-section {
             display: none
@@ -969,7 +972,7 @@
                                                                         var myurl = ;
                                                                     </script>
                                                                     <a href="@Url.Action("removecart","Home",new {id=item.Id})" class="remove remove_from_cart_button btn-remove1" aria-label="Remove this item" data-product_id="94" data-cart_item_key="f4b9ec30ad9f68f89b29639786cb62ef" data-product_sku="K27SA62">×</a>
-                                                                    <span class="quantity">@item.Quantity × <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs.</span>@item.PerUnitPrice=</bdi></span></span>
+                                                                    <span class="quantity">@item.Quantity × <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs.</span>@item.PerUnitPrice =@(item.PerUnitPrice* item.Quantity)</bdi></span></span>
 
                                                                     
                                                                     <p class="product-name"><a href="https://klbtheme.com/qualis/product/organic-grape-tomatoes/">@productname</a></p>
