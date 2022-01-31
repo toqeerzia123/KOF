@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KOF.Models
 {
-    public class User:TrackableEntityBase<int>
+    public class AllUser:TrackableEntityBase<int>
     {
         public string Name { get; set; }
         public string Email { get; set; }

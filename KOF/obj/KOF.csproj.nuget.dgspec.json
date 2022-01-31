@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Projects\\KOF-toqeer\\KOF\\KOF\\KOF.csproj": {}
+    "G:\\Projects\\KOF\\KOF\\KOF.csproj": {}
   },
   "projects": {
-    "G:\\Projects\\KOF-toqeer\\KOF\\KOF\\KOF.csproj": {
+    "G:\\Projects\\KOF\\KOF\\KOF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Projects\\KOF-toqeer\\KOF\\KOF\\KOF.csproj",
+        "projectUniqueName": "G:\\Projects\\KOF\\KOF\\KOF.csproj",
         "projectName": "KOF",
-        "projectPath": "G:\\Projects\\KOF-toqeer\\KOF\\KOF\\KOF.csproj",
+        "projectPath": "G:\\Projects\\KOF\\KOF\\KOF.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "G:\\Projects\\KOF-toqeer\\KOF\\KOF\\obj\\",
+        "outputPath": "G:\\Projects\\KOF\\KOF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,17 +44,41 @@
               "target": "Package",
               "version": "[11.0.0, )"
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.21, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.21, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.22, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.22, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.22, )"
+              "version": "[3.1.21, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.21, )"
             },
             "Microsoft.OpenApi": {
               "target": "Package",
               "version": "[1.2.3, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -15,7 +15,7 @@ namespace KOF.Models
         public int TotalAmount { get; set; }
         public int UserId { get; set; }
         [JsonIgnore]
-        public virtual User User { get; set; }
+        public virtual AllUser User { get; set; }
         public IList<OrderItem> OrderItems { get; set; }
         public IList<Product> Products { get; set; }
     }
