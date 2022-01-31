@@ -88,7 +88,7 @@ namespace KOF
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                endpoints.MapRazorPages(); 
             });
             app.UseSwagger();
             app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v2/swagger.json", "KOF Services"));
