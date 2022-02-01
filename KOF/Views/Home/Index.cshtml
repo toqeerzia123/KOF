@@ -4,7 +4,7 @@
     ViewData["Title"] = "INdex";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 
-    var categories = _dbContext.Categories.Where(x=>x.Status==true).ToList();
+    var categories = _dbContext.Categories.Where(x => x.Status == true).ToList();
 
     var products = _dbContext.Products.ToList();
 }
@@ -136,7 +136,7 @@
                                                 <div class="item">
                                                     <a href="@Url.Action("ProductGridView","Home",new {id=item.Id })">
                                                         <div class="pro-img">
-                                                            <img onload="Wpfcll.r(this,true);"  src="/Images/CategoryImages/@Url.Content(item.ImageUrl)" data-wpfc-original-src="/Images/CategoryImages/@Url.Content(item.ImageUrl)" alt="Beans">
+                                                            <img onload="Wpfcll.r(this,true);" src="/Images/CategoryImages/@Url.Content(item.ImageUrl)" data-wpfc-original-src="/Images/CategoryImages/@Url.Content(item.ImageUrl)" alt="Beans">
                                                             <div class="pro-info">@item.Name</div>
                                                         </div>
                                                     </a>
@@ -876,36 +876,37 @@
     </div>
     <div class="vc_row-full-width vc_clearfix"></div>
 </div>
-<div class="container">
-    <div class="row our-features-box">
-        <ul>
-            <li>
-                <div class="feature-box klb-footer-box">
-                    <i class="fa fa-truck"></i>
-                    <div class="content">FREE SHIPPING on order over $99</div>
-                </div>
-            </li>
-            <li>
-                <div class="feature-box klb-footer-box">
-                    <i class="fa fa-phone"></i>
-                    <div class="content">HAVE A QUESTIONS? <a href="/WebContent/qualis/108007890000.html">+10800 789 0000</a></div>
-                </div>
-            </li>
-            <li>
-                <div class="feature-box klb-footer-box">
-                    <i class="fa fa-usd"></i>
-                    <div class="content">100% MONEY BACK GUARANTEE</div>
-                </div>
-            </li>
-            <li>
-                <div class="feature-box klb-footer-box">
-                    <i class="fa fa-briefcase"></i>
-                    <div class="content">30 DAYS RETURN SERVICE</div>
-                </div>
-            </li>
-            <li class="last">
-                <div class="feature-box"> <a href="#"><i class="fa fa-apple"></i> Download</a> <a href="#"><i class="fa fa-android"></i> Download</a></div>
-            </li>
-        </ul>
+@*<div class="container">
+        <div class="row our-features-box">
+            <ul>
+                <li>
+                    <div class="feature-box klb-footer-box">
+                        <i class="fa fa-truck"></i>
+                        <div class="content">FREE SHIPPING on order over $99</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-box klb-footer-box">
+                        <i class="fa fa-phone"></i>
+                        <div class="content">HAVE A QUESTIONS? <a href="/WebContent/qualis/108007890000.html">+10800 789 0000</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-box klb-footer-box">
+                        <i class="fa fa-usd"></i>
+                        <div class="content">100% MONEY BACK GUARANTEE</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="feature-box klb-footer-box">
+                        <i class="fa fa-briefcase"></i>
+                        <div class="content">30 DAYS RETURN SERVICE</div>
+                    </div>
+                </li>
+                <li class="last">
+                    <div class="feature-box"> <a href="#"><i class="fa fa-apple"></i> Download</a> <a href="#"><i class="fa fa-android"></i> Download</a></div>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+*@

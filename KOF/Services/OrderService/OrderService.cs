@@ -37,7 +37,7 @@ namespace KOF.Services.OrderService
                   unit = _context.Inventories.Where(q => q.ProductId == z.ProductId).Select(p => p.Unit).SingleOrDefault(),
 
               }).ToList(),
-              userinfo=_context.Users.Where(y=>y.Id==x.UserId).Select(y=> new {
+              userinfo=_context.AllUsers.Where(y=>y.Id==x.UserId).Select(y=> new {
               name=y.Name,
               contactno=y.Phone,
               email=y.Email
