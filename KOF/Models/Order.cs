@@ -12,6 +12,13 @@ namespace KOF.Models
         public string OrderType { get; set; }
         public string OrderFrom { get; set; }
         public string OrderStatus { get; set; }
+
+        public string order_streataddress { get; set; }
+        public string Order_city { get; set; }
+        public string Order_phoneno { get; set; }
+        public string  HouseNo{ get; set; }
+        public string Order_emailaddress { get; set; }
+        public string Order_Notes { get; set; }
         public int TotalAmount { get; set; }
         public int UserId { get; set; }
         [JsonIgnore]

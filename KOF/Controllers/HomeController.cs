@@ -1,6 +1,8 @@
 ﻿using KOF.Models;
 using KOF.Services.InventoryService;
+using KOF.Services.OrderService;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,17 +13,18 @@ using System.Threading.Tasks;
 
 namespace KOF.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
         private readonly IInventoryService _inventoryService;
-      
-        public HomeController(ILogger<HomeController> logger, IInventoryService inventoryService)
+        private readonly IOrderService _orderserviceService;
+        public HomeController(ILogger<HomeController> logger, IInventoryService inventoryService, IOrderService orderserviceService)
         {
             _logger = logger;
             _inventoryService = inventoryService;
+            _orderserviceService = orderserviceService;
         }
 
         public IActionResult Index()
@@ -30,6 +33,11 @@ namespace KOF.Controllers
         }
 
         public IActionResult ContactUs()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ContactUs(ContactUs contact)
         {
             return View();
         }
@@ -82,7 +90,14 @@ namespace KOF.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult Checkout(string   streadaddress,string homeadderess,string city,string phone,string    email,string    Ordernote,int userid)
+        {
+           var data= _orderserviceService.Checkout(streadaddress, homeadderess,  city,  phone,     email,     Ordernote,  userid);
+         
+            HttpContext.Session.SetString("orderinfo", "data");
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

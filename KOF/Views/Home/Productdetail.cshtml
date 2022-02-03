@@ -1,4 +1,9 @@
 ﻿@inject KOF.Context.ApplicationDbContext _context;
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
     ViewData["Title"] = "INdex";
     Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
@@ -41,7 +46,7 @@
                 <div id="product-94" class="blog_entry clearfix product type-product post-94 status-publish first instock product_cat-vegetables has-post-thumbnail shipping-taxable purchasable product-type-simple">
                     <div class="product-essential container">
                         <div class="row">
-                            <div class="product-img-box col-lg-5 col-sm-5 col-xs-12">
+                            @*<div class="product-img-box col-lg-5 col-sm-5 col-xs-12">
                                 <div class="product-image woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 0; transition: opacity .25s ease-in-out;">
                                     <figure class="woocommerce-product-gallery__wrapper">
                                         @{
@@ -58,39 +63,85 @@
                                         }
                                     </figure>
                                 </div>
-                            </div>
-                            <div class="product-shop col-lg- col-sm-7 col-xs-12">
-                                <div class="product-next-prev">
-                                    @*<a rel="next" class="product-next" href="https://klbtheme.com/qualis/product/native-organic-cucumber/" title="Native Organic Cucumber"><span></span></a>
-                                        <a rel="prev" href="https://klbtheme.com/qualis/product/organic-sweet-corn/" title="Organic Sweet Corn" class="product-prev"><span></span></a>*@
-                                </div>
-                                <div class="product-name">
-                                    <h1 class="product_title entry-title">
-                                        @productinf.product.Name
-                                    </h1>
-                                </div>
-                                <div class="woocommerce-product-rating">
-                                    @*<div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span></div>
-                                        <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span class="count">1</span> customer review)</a>*@
-                                </div>
-                                <p class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs.</span><span id="updatedprice">@productinf.inv.PricePerUnit</span> </bdi></span></p>
-                                <div class="add-to-box">
-                                    <form action="/Home/Addtocard" method="post">
-                                        @if (productinf.inv.Unit == "1 Kg")
-                                        {
-                                            <select class="section-lin" name="unit" onchange="report()" id="unit">
-                                                <option value="1 Kg">1 Kg</option>
-                                                <option value="1/2 Kg">1/2 Kg</option>
-                                            </select>
-                                        }
-                                        else
-                                        {
-                                            <select class="section-lin" name="unit">
+                            </div>*@
+                            <div class="product-img-box col-lg-5 col-sm-5 col-xs-12">
+                                <div class="new-label new-top-left">Hot</div>
+                                <div class="sale-label sale-top-left">-17%</div>
+                                <div class="product-image woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 1; transition: opacity 0.25s ease-in-out 0s;">
+                                    <div class="flex-viewport" style="overflow: hidden; position: relative; height: 473.325px;">
+                                        <figure class="woocommerce-product-gallery__wrapper" style="width: 1000%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                                            <div data-thumb="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-99x99.jpg" data-thumb-alt="" class="woocommerce-product-gallery__image flex-active-slide" style="width: 473.325px; margin-right: 0px; float: left; display: block;">
 
-                                                <option value="1/2 Kg" selected>1/2 Kg</option>
-                                            </select>
-                                        }
-                                        <script>
+                                                <a href="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6.jpg">
+                                                    <img width="600" height="600" src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-600x600.jpg" class="wp-post-image" alt="" loading="lazy" title="p6" data-caption="" data-large_image_width="800" data-large_image_height="800" sizes="(max-width: 600px) 100vw, 600px" draggable="false">
+                                                </a>
+                                            </div>
+
+                                        </figure>
+                                    </div>
+                                    <ol class="flex-control-nav flex-control-thumbs owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                        <div class="owl-wrapper-outer">
+                                            <div class="owl-wrapper" style="width: 1110px; left: 0px; display: block;">
+                                                <div class="owl-item" style="width: 111px;">
+                                        <li>
+                                            <img src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p6-99x99.jpg" class="flex-active" draggable="false">
+                                        </li>
+                                </div>
+                                <div class="owl-item" style="width: 111px;">
+                                    <li>
+                                        <img src="https://klbtheme.com/qualis/wp-content/uploads/2018/12/p11-99x99.jpg" draggable="false">
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                                </ol>
+                            </div>
+                        </div>
+                              
+                              
+                            </div>
+                        </div>
+                        <div class="owl-controls clickable">
+                            <div class="owl-buttons">
+                                <div class="owl-prev"><i class="fa fa-chevron-left"></i></div>
+                                <div class="owl-next"><i class="fa fa-chevron-right"></i></div>
+                            </div>
+                        </div>
+                        </ol>
+                    </div>
+                </div>
+                <div class="product-shop col-lg- col-sm-7 col-xs-12">
+                    <div class="product-next-prev">
+                        @*<a rel="next" class="product-next" href="https://klbtheme.com/qualis/product/native-organic-cucumber/" title="Native Organic Cucumber"><span></span></a>
+                <a rel="prev" href="https://klbtheme.com/qualis/product/organic-sweet-corn/" title="Organic Sweet Corn" class="product-prev"><span></span></a>*@
+                    </div>
+                    <div class="product-name">
+                        <h1 class="product_title entry-title">
+                            @productinf.product.Name
+                        </h1>
+                    </div>
+                    <div class="woocommerce-product-rating">
+                        @*<div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5 based on <span class="rating">1</span> customer rating</span></div>
+                <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span class="count">1</span> customer review)</a>*@
+                    </div>
+                    <p class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs.</span><span id="updatedprice">@productinf.inv.PricePerUnit</span> </bdi></span></p>
+                    <div class="add-to-box">
+                        <form action="/Home/Addtocard" method="post">
+                            @if (productinf.inv.Unit == "1 Kg")
+                            {
+                                <select class="section-lin" name="unit" onchange="report()" id="unit">
+                                    <option value="1 Kg">1 Kg</option>
+                                    <option value="1/2 Kg">1/2 Kg</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <select class="section-lin" name="unit">
+
+                                    <option value="1/2 Kg" selected>1/2 Kg</option>
+                                </select>
+                            }
+                            <script>
                                             function report() {
 
                                                 if (document.getElementById("unit").value == '1/2 Kg') {
@@ -101,89 +152,104 @@
                                                     document.getElementById("updatedprice").innerHTML =@productinf.inv.PricePerUnit;
                                                 }
                                             }
-                                        </script>
-                                        <div class="add-to-cart">
-                                            <div class="cart">
-                                                <input type="hidden" name="inventoryid" value="@productinf.inv.Id" />
-                                                <input type="hidden" name="productid" value="@productinf.product.Id" />
+                            </script>
+                            <div class="add-to-cart">
+                                <div class="cart">
+                                    <input type="hidden" name="inventoryid" value="@productinf.inv.Id" />
+                                    <input type="hidden" name="productid" value="@productinf.product.Id" />
 
-                                                <div class="pull-left">
-                                                    <div class="custom pull-left">
-                                                        <div class="quantity">
+                                    <div class="pull-left">
+                                        <div class="custom pull-left">
+                                            <div class="quantity">
 
-                                                            <label class="screen-reader-text" for="pluss">@productinf.product.Name</label>
-                                                            <button class="minus reduced items-count" onClick="minus(-1)" type="button"><i class="fa fa-minus">&nbsp;</i></button>
-                                                            <input type="text"
-                                                                   id="pluss"
-                                                                   class="count input-text qty input-text qty text"
-                                                                   step="1"
-                                                                   min="1"
-                                                                   max=""
-                                                                   name="Qty"
-                                                                   value="1"
-                                                                   title="Qty"
-                                                                   size="4"
-                                                                   placeholder=""
-                                                                   inputmode="numeric" />
-                                                            <button class="plus increase items-count" onClick="plus(1)" cli type="button"><i class="fa fa-plus">&nbsp;</i></button>
-                                                            <script>
-                                                                var plus = function (c) {
-                                                                    var id = document.getElementById("pluss").value;
-                                                                    document.getElementById("pluss").value = (Number(id) + 1);
-                                                                    /* alert(id + 1);*/
-                                                                    /*   document.testing.quantity.value += c;*/
-                                                                };
-                                                                var minus = function (c) {
+                                                <label class="screen-reader-text" for="pluss">@productinf.product.Name</label>
+                                                <button class="minus reduced items-count" onClick="minus(-1)" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+                                                <input type="text"
+                                                       id="pluss"
+                                                       class="count input-text qty input-text qty text"
+                                                       step="1"
+                                                       min="1"
+                                                       max=""
+                                                       name="Qty"
+                                                       value="1"
+                                                       title="Qty"
+                                                       size="4"
+                                                       placeholder=""
+                                                       inputmode="numeric" />
+                                                <button class="plus increase items-count" onClick="plus(1)" cli type="button"><i class="fa fa-plus">&nbsp;</i></button>
+                                                <script>
+                                                    var plus = function (c) {
+                                                        var id = document.getElementById("pluss").value;
+                                                        document.getElementById("pluss").value = (Number(id) + 1);
+                                                        /* alert(id + 1);*/
+                                                        /*   document.testing.quantity.value += c;*/
+                                                    };
+                                                    var minus = function (c) {
 
-                                                                    var id = document.getElementById("pluss").value;
-                                                                    if (id > 0) {
-                                                                        document.getElementById("pluss").value = (Number(id) - 1)
-                                                                    }
+                                                        var id = document.getElementById("pluss").value;
+                                                        if (id > 0) {
+                                                            document.getElementById("pluss").value = (Number(id) - 1)
+                                                        }
 
-                                                                    /*     alert(Number(document.getElementById("pluss").value)+1)*/
-                                                                    /*   document.testing.quantity.value += c;*/
-                                                                };
-                                                            </script>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" name="add-to-cart" value="94" class="button btn-cart single_add_to_cart_button button alt">Add to cart</button>
+                                                        /*     alert(Number(document.getElementById("pluss").value)+1)*/
+                                                        /*   document.testing.quantity.value += c;*/
+                                                    };
+                                                </script>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        var netuserid = UserManager.GetUserId(User);
+                                        var userid = _context.AllUsers.Where(x => x.IdentityUserId == netuserid).SingleOrDefault().Id;
+                                        <input type="hidden" name="userid" value="@userid" />
+
+
+                                        <button type="submit" name="add-to-cart" value="94" class="button btn-cart single_add_to_cart_button button alt">Add to cart</button>
+                                    }
+                                    else
+                                    {
+
+                                        <button type="submit" name="add-to-cart" value="94" class="button btn-cart single_add_to_cart_button button alt"><a asp-area="Identity" asp-page="/Account/Login">Login Before add to cart </a></button>
+
+                                    }
 
                                 </div>
-                                @*<a href="http://klbtheme.com/qualis?action=yith-woocompare-add-product&id=94" class="compare button" data-product_id="94" rel="nofollow">Compare</a>*@
-                                <div class="woocommerce-product-details__short-description">
-                                    <p>@productinf.product.About</p>
-                                </div>
-                                <div class="tinv-wraper woocommerce tinv-wishlist tinvwl-shortcode-add-to-cart"
-                                     data-product_id="94">
-                                    <div class="tinv-wishlist-clear"></div>
-                                    <a role="button" tabindex="0" aria-label="Add to Wishlist" class="tinvwl_add_to_wishlist_button tinvwl-icon-heart  tinvwl-position-shortcode" data-tinv-wl-producttype="simple" data-tinv-wl-action="add"><span class="tinvwl_add_to_wishlist-text">Add to Wishlist</span></a>
-                                    <div class="tinv-wishlist-clear"></div>
-                                    @*<div class="tinvwl-tooltip">Add to Wishlist</div>*@
-                                </div>
-                                <div class="social social-container">
-                                    <ul class="link">
-                                        <li class="fb"><a href="#" class="facebook" aria-label="Share this page with Facebook" role="button"></a></li>
-                                        <li class="tw"><a href="#" class="twitter" aria-label="Share this page with Twitter"></a></li>
-                                        <li class="googleplus"><a href="#" class="googleplus" aria-label="Share this page with Google Plus"></a></li>
-                                        <li class="pintrest"><a href="#" class="pinterest" aria-label="Share this page with Pinterest"></a></li>
-                                        <li class="linkedin"><a href="#" class="linkedin" aria-label="Share this page with Linkedin"></a></li>
-                                    </ul>
-                                </div>
-                                <ul class="shipping-pro">
-                                    <li>Free Wordwide Shipping</li>
-                                    <li>30 Days Return</li>
-                                    <li>Member Discount</li>
-                                </ul>
-                                <div class="product_meta">
-                                    @*<span class="sku_wrapper">SKU: <span class="sku">K27SA62</span></span>*@
-                                    <span class="posted_in">Category: <a href="https://klbtheme.com/qualis/product-category/vegetables/" rel="tag">@productinf.category.Name</a></span>
-                                </div>
                             </div>
-                        </div>
+                        </form>
+
+                    </div>
+                    @*<a href="http://klbtheme.com/qualis?action=yith-woocompare-add-product&id=94" class="compare button" data-product_id="94" rel="nofollow">Compare</a>*@
+                    <div class="woocommerce-product-details__short-description">
+                        <p>@productinf.product.About</p>
+                    </div>
+                    <div class="tinv-wraper woocommerce tinv-wishlist tinvwl-shortcode-add-to-cart"
+                         data-product_id="94">
+                        <div class="tinv-wishlist-clear"></div>
+                        <a role="button" tabindex="0" aria-label="Add to Wishlist" class="tinvwl_add_to_wishlist_button tinvwl-icon-heart  tinvwl-position-shortcode" data-tinv-wl-producttype="simple" data-tinv-wl-action="add"><span class="tinvwl_add_to_wishlist-text">Add to Wishlist</span></a>
+                        <div class="tinv-wishlist-clear"></div>
+                        @*<div class="tinvwl-tooltip">Add to Wishlist</div>*@
+                    </div>
+                    <div class="social social-container">
+                        <ul class="link">
+                            <li class="fb"><a href="#" class="facebook" aria-label="Share this page with Facebook" role="button"></a></li>
+                            <li class="tw"><a href="#" class="twitter" aria-label="Share this page with Twitter"></a></li>
+                            <li class="googleplus"><a href="#" class="googleplus" aria-label="Share this page with Google Plus"></a></li>
+                            <li class="pintrest"><a href="#" class="pinterest" aria-label="Share this page with Pinterest"></a></li>
+                            <li class="linkedin"><a href="#" class="linkedin" aria-label="Share this page with Linkedin"></a></li>
+                        </ul>
+                    </div>
+                    <ul class="shipping-pro">
+                        <li>Free Wordwide Shipping</li>
+                        <li>30 Days Return</li>
+                        <li>Member Discount</li>
+                    </ul>
+                    <div class="product_meta">
+                        @*<span class="sku_wrapper">SKU: <span class="sku">K27SA62</span></span>*@
+                        <span class="posted_in">Category: <a href="https://klbtheme.com/qualis/product-category/vegetables/" rel="tag">@productinf.category.Name</a></span>
+                    </div>
+                </div>
+            </div>
                     </div>
                     <div class="product-collateral container">
                         <div class="woocommerce-tabs wc-tabs-wrapper">

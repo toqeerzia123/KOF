@@ -4,14 +4,16 @@ using KOF.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KOF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220201175512_Add Identity")]
+    partial class AddIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +35,6 @@ namespace KOF.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -141,30 +140,6 @@ namespace KOF.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("KOF.Models.ContactUs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContactUs");
-                });
-
             modelBuilder.Entity("KOF.Models.Inventory", b =>
                 {
                     b.Property<int>("Id")
@@ -230,9 +205,6 @@ namespace KOF.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("HouseNo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("OrderFrom")
                         .HasColumnType("nvarchar(max)");
 
@@ -245,26 +217,11 @@ namespace KOF.Migrations
                     b.Property<string>("OrderType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Order_Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Order_city")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Order_emailaddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Order_phoneno")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("TotalAmount")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
-
-                    b.Property<string>("order_streataddress")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

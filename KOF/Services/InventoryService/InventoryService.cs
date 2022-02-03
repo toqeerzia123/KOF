@@ -26,7 +26,8 @@ namespace KOF.Services.InventoryService
             Cart obj = new Cart
             {
                 ProductId = productid,
-                UserId = 1,
+                UserId = userid,
+                inventoryId=inventoryid,
                 Quantity = Qty,
                 PerUnitPrice = inv.PricePerUnit,
                 TotalPrice = inv.PricePerUnit * Qty

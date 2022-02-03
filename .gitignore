@@ -237,6 +237,7 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
+
 *.pfx
 *.publishsettings
 orleans.codegen.cs
@@ -266,7 +267,7 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
-
+*.jfm
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
@@ -301,6 +302,7 @@ node_modules/
 **/*.DesktopClient/ModelManifest.xml
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
+*KOFDB/KOFDB.jmf
 _Pvt_Extensions
 
 # Paket dependency manager
@@ -362,3 +364,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+*.jfm

@@ -40,5 +40,7 @@ namespace KOF.Context
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<AllUser> AllUsers { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ContactUs> ContactUs { get; set; }
+
     }
 }

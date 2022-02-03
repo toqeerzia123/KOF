@@ -27,6 +27,62 @@ namespace KOF.Services.OrderService
             return "success";
         }
 
+        public async Task<string> Checkout(string streadaddress, string homeadderess, string city, string phone, string email, string Ordernote, int userid)
+        {
+
+            try
+            {
+                var mycart =  _context.Carts.Where(x => x.UserId == userid).ToList();
+                Order order = new Order()
+                {
+                    UserId = userid,
+                    Order_phoneno = phone,
+                    Order_emailaddress = email,
+                    order_streataddress = streadaddress,
+                    Order_city = city,
+                    Order_Notes = Ordernote,
+                    HouseNo= homeadderess,
+                    OrderFrom = "Web",
+                    OrderNumber = "1",
+                    OrderStatus = "Pending",
+                    OrderType = "Online",
+                    CreatedOn = DateTime.Now,
+                };
+                
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+                var orderid = order.Id;
+                foreach (var item in mycart)
+                {
+                    OrderItem items = new OrderItem()
+                    {
+                        OrderId = orderid,
+                        PerUnitCost = item.PerUnitCost,
+                        PerUnitPrice = item.PerUnitPrice,
+                        ProductId = item.ProductId,
+                        TotalCost = item.TotalCost,
+                        TotalPrice = item.TotalPrice,
+                        Quantity = item.Quantity,
+
+                    };
+                    _context.OrderItems.Add(items);
+                    _context.SaveChanges();
+                }
+                _context.Carts.RemoveRange(mycart);
+                _context.SaveChanges();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                var ddd = ex.Message;
+
+                throw;
+            }
+       
+            //await mycart.RemoveRange(mycart)
+            return "";
+        }
+
         public async Task<object> GetOrders()
         {
             var data = await _context.Orders.Include(x=>x.OrderItems).ThenInclude(x=>x.Product).Select(x=>new { 
