@@ -3,9 +3,14 @@
 
 @{
     ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
 }
-
-<h1>@ViewData["Title"]</h1>
+<div class="page-heading">
+    <div class="page-title">
+        <h2>Login</h2>
+    </div>
+</div>
+@*<h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
         <section>
@@ -75,8 +80,101 @@
             }
         </section>
     </div>
-</div>
+</div>*@
 
-@section Scripts {
+@*@section Scripts {
     <partial name="_ValidationScriptsPartial" />
-}
+}*@
+<section class="main-container col2-right-layout">
+    <div class="main container">
+        <div class="row">
+            <div class="woocommerce">
+                <div class="woocommerce-notices-wrapper"></div>
+                <div class="account-login container register-enable">
+
+
+                    <div class="u-columns col2-set" id="customer_login">
+
+                        <div class="u-column1 col-1">
+
+
+                            <h2>Login</h2>
+
+                            <form class="woocommerce-form woocommerce-form-login login" method="post">
+
+
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label for="username">Username or email address&nbsp;<span class="required">*</span></label>
+                                    <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" asp-for="Input.Email" id="username" autocomplete="username" value="">
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </p>
+                                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                    <label for="password">Password&nbsp;<span class="required">*</span></label>
+                                    <span class="password-input">
+                                        <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" asp-for="Input.Password" id="password" autocomplete="current-password">
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                        <span class="show-password-input"></span>
+                                    </span>
+                                </p>
+
+
+                                <p class="form-row">
+                                    <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="3653e6c70d"><input type="hidden" name="_wp_http_referer" value="/qualis/my-account/">				<button type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-login__submit" name="login" value="Log in">Log in</button>
+                                    <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+                                        <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever"> <span>Remember me</span>
+                                    </label>
+
+                                </p>
+                                <p class="woocommerce-LostPassword lost_password">
+                                    <a href="https://klbtheme.com/qualis/my-account/lost-password/">Lost your password?</a>
+                                </p>
+
+
+                            </form>
+
+
+                        </div>
+
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row our-features-box">
+        <ul>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-truck"></i>
+                    <div class="content">FREE SHIPPING on order over $99</div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-phone"></i>
+                    <div class="content">HAVE A QUESTIONS? <a href="10800 7890000">+10800 789 0000</a></div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-usd"></i>
+                    <div class="content">100% MONEY BACK GUARANTEE</div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-box klb-footer-box">
+                    <i class="fa fa-briefcase"></i>
+                    <div class="content">30 DAYS RETURN SERVICE</div>
+                </div>
+            </li>
+            <li class="last">
+                <div class="feature-box">
+                    <a href="#"><i class="fa fa-apple"></i> Download</a>
+                    <a href="#"><i class="fa fa-android"></i> Download</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
