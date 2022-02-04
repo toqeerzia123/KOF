@@ -84,5 +84,12 @@ namespace KOF.Services.InventoryService
             return 0;
 
         }
+
+        public async Task<string> Savemessange(ContactUs contact)
+        {
+            await _context.ContactUs.AddAsync(contact);
+            await _context.SaveChangesAsync();
+            return "Success";
+        }
     }
 }

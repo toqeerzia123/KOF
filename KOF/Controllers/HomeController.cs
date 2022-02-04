@@ -37,8 +37,9 @@ namespace KOF.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult ContactUs(ContactUs contact)
+        public async Task<IActionResult> ContactUs(ContactUs contactUs)
         {
+            var data = await _inventoryService.Savemessange(contactUs);
             return View();
         }
         public IActionResult ProductListView()
