@@ -11,7 +11,27 @@
     var userid = _dbContext.AllUsers.Where(x => x.IdentityUserId == netuserid).SingleOrDefault().Id;
 
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.9/sweetalert2.min.css" integrity="sha512-cyIcYOviYhF0bHIhzXWJQ/7xnaBuIIOecYoPZBgJHQKFPo+TOBA+BY1EnTpmM8yKDU4ZdI3UGccNGCEUdfbBqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.1.9/sweetalert2.all.min.js" integrity="sha512-IZ95TbsPTDl3eT5GwqTJH/14xZ2feLEGJRbII6bRKtE/HC6x3N4cHye7yyikadgAsuiddCY2+6gMntpVHL1gHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+@{
+    if (ViewBag.orderadded == "Success")
+    {
+        <script>
+
+
+            Swal.fire(
+                'Order Placed Successfully!',
+                'We Will Contact You Soon!',
+                'success'
+            )
+
+
+
+        </script>
+    }
+}
 <div class="page-heading">
     <div class="page-title">
         <h2>Cart</h2>
@@ -114,7 +134,7 @@
                                                     @productname&nbsp;						 <strong class="product-quantity">(@item.Quantity×&nbsp;@item.PerUnitPrice)</strong>
                                                 </td>
                                                 <td class="product-total">
-                                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs</span>@(item.Quantity*item.PerUnitPrice)</bdi></span>
+                                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs : </span>@(item.Quantity*item.PerUnitPrice)</bdi></span>
                                                 </td>
                                             </tr>
 
@@ -125,7 +145,7 @@
 
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs</span>@mycart.Sum(x => x.TotalPrice)</bdi></span></td>
+                                            <td><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs : </span>@mycart.Sum(x => x.TotalPrice)</bdi></span></td>
                                         </tr>
 
 
@@ -135,7 +155,7 @@
 
                                         <tr class="order-total">
                                             <th>Total</th>
-                                            <td><strong><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs</span>@mycart.Sum(x => x.TotalPrice)</bdi></span></strong> </td>
+                                            <td><strong><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">Rs : </span>@mycart.Sum(x => x.TotalPrice)</bdi></span></strong> </td>
                                         </tr>
 
 
@@ -175,11 +195,13 @@
                                                 <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="https://klbtheme.com/qualis/?page_id=3" class="woocommerce-privacy-policy-link" target="_blank">privacy policy</a>.</p>
                                             </div>
                                         </div>
+                                        @if (mycart.Count() > 0)
+                                        {
+                                            <button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>
+
+                                        }
 
 
-                                        <button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>
-
-                                        <input type="hidden" id="woocommerce-process-checkout-nonce" name="woocommerce-process-checkout-nonce" value="bbd8131a2c"><input type="hidden" name="_wp_http_referer" value="/qualis/?wc-ajax=update_order_review">
                                     </div>
                                 </div>
 

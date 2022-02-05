@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace KOF.Controllers
 {
-    [Authorize]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -53,6 +53,7 @@ namespace KOF.Controllers
             ViewBag.id = id;
                 return View();
         }
+        [Authorize]
         public async Task<IActionResult> Productdetail(int id)
         {
             //var data = await _inventoryService.CategorywiseInventory(id);
@@ -67,10 +68,11 @@ namespace KOF.Controllers
             return View();
         }
         [HttpPost]
+  
         public async Task<IActionResult> Addtocard(int inventoryid,int productid,int Qty,int userid,string unit)
         {
             var data = await _inventoryService.addtocart( inventoryid,  productid,  Qty,  userid, unit);
-            return RedirectToAction("Productdetail",new {id=productid });
+            return RedirectToAction("Productdetail",new {id= inventoryid });
         }
         public IActionResult MyAccount()
         {
@@ -87,6 +89,7 @@ namespace KOF.Controllers
         {
             return View();
         }
+        [Authorize]
         public IActionResult Checkout()
         {
             return View();
@@ -95,8 +98,9 @@ namespace KOF.Controllers
         public IActionResult Checkout(string   streadaddress,string homeadderess,string city,string phone,string    email,string    Ordernote,int userid)
         {
            var data= _orderserviceService.Checkout(streadaddress, homeadderess,  city,  phone,     email,     Ordernote,  userid);
-         
-            HttpContext.Session.SetString("orderinfo", "data");
+
+
+            ViewBag.orderadded = "Success";
             return View();
         }
         public IActionResult Privacy()

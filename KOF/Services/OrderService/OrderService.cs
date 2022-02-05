@@ -32,6 +32,16 @@ namespace KOF.Services.OrderService
 
             try
             {
+                var orderno = _context.Orders.Max(x => x.OrderNumber);
+                int no = 10000;
+                if(orderno==null)
+                {
+                    no = no;
+                }
+                else
+                {
+                    no = Convert.ToInt32(orderno)+1;
+                }
                 var mycart =  _context.Carts.Where(x => x.UserId == userid).ToList();
                 Order order = new Order()
                 {
@@ -43,7 +53,7 @@ namespace KOF.Services.OrderService
                     Order_Notes = Ordernote,
                     HouseNo= homeadderess,
                     OrderFrom = "Web",
-                    OrderNumber = "1",
+                    OrderNumber =no.ToString(),
                     OrderStatus = "Pending",
                     OrderType = "Online",
                     CreatedOn = DateTime.Now,
@@ -83,10 +93,17 @@ namespace KOF.Services.OrderService
             return "";
         }
 
+        public async Task<object> contactus()
+        {
+            var data = await _context.ContactUs.ToListAsync();
+            return data;
+        }
+
         public async Task<object> GetOrders()
         {
             var data = await _context.Orders.Include(x=>x.OrderItems).ThenInclude(x=>x.Product).Select(x=>new { 
               order=x,
+              total=_context.OrderItems.Where(z => z.OrderId == x.Id).Sum(x=>x.TotalPrice),
               orderitems=_context.OrderItems.Where(z=>z.OrderId==x.Id).Select(z=> new { 
                 item=z,
                 product=_context.Products.Where(p=>p.Id==z.ProductId).Select(p=>p.Name).SingleOrDefault(),

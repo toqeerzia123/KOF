@@ -22,20 +22,43 @@ namespace KOF.Services.InventoryService
 
         public async Task<int> addtocart(int inventoryid, int productid, int Qty, int userid,string unit)
         {
+            var price = 0;
             var inv = _context.Inventories.Where(x=>x.Id==inventoryid).SingleOrDefault();
-            Cart obj = new Cart
+            var cartinfo = _context.Carts.Where(x => x.inventoryId == inventoryid && x.ProductId == productid && x.unit == unit&&x.UserId==userid).SingleOrDefault();
+            if(cartinfo !=null)
             {
-                ProductId = productid,
-                UserId = userid,
-                inventoryId=inventoryid,
-                Quantity = Qty,
-                PerUnitPrice = inv.PricePerUnit,
-                TotalPrice = inv.PricePerUnit * Qty
+                cartinfo.Quantity=cartinfo.Quantity+Qty;
+                cartinfo.TotalPrice = cartinfo.Quantity * cartinfo.PerUnitPrice;
+                _context.Carts.Update(cartinfo);
+                _context.SaveChanges();
 
-            };
-         await    _context.AddAsync(obj);
-       await     _context.SaveChangesAsync();
-            return 0;
+            }
+            else
+            {
+                if(unit== "1/2 Kg")
+                {
+                    price=(inv.PricePerUnit / 2);
+                }
+                else
+                {
+                    price = inv.PricePerUnit;
+                }
+                Cart obj = new Cart
+                {
+                    ProductId = productid,
+                    UserId = userid,
+                    unit=unit,
+                    inventoryId = inventoryid,
+                    Quantity = Qty,
+                    PerUnitPrice = price,
+                    TotalPrice = price * Qty
+
+                };
+                await _context.Carts.AddAsync(obj);
+                await _context.SaveChangesAsync();
+            }
+      
+            return productid;
         }
 
         public async Task<object> CategorywiseInventory(int id)
