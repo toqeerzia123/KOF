@@ -41,3 +41,4 @@ D:\KOF\Updated KOF\KOF\KOFDB\obj\Debug\Model.xml
 D:\KOF\Updated KOF\KOF\KOFDB\obj\Debug\refactor.xml
 D:\KOF\Updated KOF\KOF\KOFDB\obj\Debug\postdeploy.sql
 D:\KOF\Updated KOF\KOF\KOFDB\obj\Debug\predeploy.sql
+G:\Projects\KOF\KOFDB\obj\Debug\KOFDB.sqlproj.AssemblyReference.cache

@@ -524,3 +524,7 @@ D:\KOF\Updated KOF\KOF\KOF\bin\Debug\netcoreapp3.1\MailKit.dll
 D:\KOF\Updated KOF\KOF\KOF\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\KOF\Updated KOF\KOF\KOF\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\KOF\Updated KOF\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.csproj.AssemblyReference.cache
+G:\Projects\KOF\KOF\bin\Debug\netcoreapp3.1\MailKit.dll
+G:\Projects\KOF\KOF\bin\Debug\netcoreapp3.1\MimeKit.dll
+G:\Projects\KOF\KOF\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+G:\Projects\KOF\KOF\obj\Debug\netcoreapp3.1\KOF.csproj.AssemblyReference.cache
